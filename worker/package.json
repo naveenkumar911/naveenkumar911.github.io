@@ -1,0 +1,18 @@
+{
+  "name": "ask-naveen-worker",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "kb": "node scripts/build-kb.mjs",
+    "dev": "npm run kb && wrangler dev",
+    "deploy": "npm run kb && wrangler deploy",
+    "secret": "wrangler secret put NVIDIA_API_KEY",
+    "login": "wrangler login"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260903.1",
+    "typescript": "^5.8.0",
+    "wrangler": "^4.129.0"
+  }
+}

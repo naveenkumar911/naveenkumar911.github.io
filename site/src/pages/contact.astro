@@ -1,0 +1,31 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { site } from '@/config';
+---
+<Base title="Contact | Naveen Kumar" description="Contact Naveen Kumar: book a call, email, WhatsApp or send a message. Replies within one business day.">
+  <Section kicker="Contact" title="Fastest route: book a call. Otherwise, write." intro="Replies within one business day (GMT+4). Recruiters and hiring managers: a job description link in the message saves us both a round trip.">
+    <div class="grid gap-8 md:grid-cols-[1fr_1.3fr]">
+      <div class="space-y-4">
+        <a class="card block p-5 transition-colors hover:border-accent-500" href={site.calcom} target="_blank" rel="noopener">
+          <div class="font-bold">Book a 20-minute call</div>
+          <div class="mt-1 text-sm text-[var(--fg-muted)]">Cal.com, video, no slides.</div>
+        </a>
+        <a class="card block p-5 transition-colors hover:border-accent-500" href={`mailto:${site.email}`}>
+          <div class="font-bold">Email</div>
+          <div class="mt-1 text-sm text-[var(--fg-muted)]">{site.email}</div>
+        </a>
+        <a class="card block p-5 transition-colors hover:border-accent-500" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">
+          <div class="font-bold">WhatsApp</div>
+          <div class="mt-1 text-sm text-[var(--fg-muted)]">{site.phoneUAE}</div>
+        </a>
+        <a class="card block p-5 transition-colors hover:border-accent-500" href={site.linkedin} target="_blank" rel="noopener">
+          <div class="font-bold">LinkedIn</div>
+          <div class="mt-1 text-sm text-[var(--fg-muted)]">Connect or message; I post daily.</div>
+        </a>
+      </div>
+      <ContactForm />
+    </div>
+  </Section>
+</Base>

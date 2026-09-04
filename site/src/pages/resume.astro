@@ -1,0 +1,84 @@
+---
+import Base from '@/layouts/Base.astro';
+import { site, numbers } from '@/config';
+import { experience, education } from '@/data/profile';
+import { skillGroups } from '@/data/skills';
+const top = (id: string, n = 8) => skillGroups.find((g) => g.id === id)!.items.filter((i) => i.depth !== 'working').slice(0, n).map((i) => i.name.split(':')[0].split(' (')[0]);
+---
+<Base title="Resume | Naveen Kumar" description="Resume of Naveen Kumar, Principal AI Architect and forward-deployed AI engineering leader. Print-ready; Word download available." hideChat>
+  <article class="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-14">
+    <div class="mb-6 flex flex-wrap gap-2 no-print">
+      <button class="btn btn-primary !py-2 !px-4 text-sm" onclick="window.print()">Print or save as PDF</button>
+      <a class="btn btn-secondary !py-2 !px-4 text-sm" href={site.resumeDocx} download>Download Word (.docx)</a>
+      <a class="btn btn-ghost !py-2 !px-4 text-sm" href="/executive-brief">Executive brief</a>
+    </div>
+
+    <header class="border-b border-[var(--line)] pb-5">
+      <h1 class="text-3xl font-extrabold tracking-tight">Naveen Kumar</h1>
+      <p class="mt-1 font-medium">Principal AI Architect · Forward-Deployed AI Engineering Leader · Agentic AI, Enterprise RAG, LLMOps, AI Governance</p>
+      <p class="mt-2 text-sm text-[var(--fg-muted)]">
+        {site.location} · <a class="underline" href={`mailto:${site.email}`}>{site.email}</a> · {site.phoneUAE} · <a class="underline" href={site.linkedin}>LinkedIn</a> · <a class="underline" href={site.github}>GitHub</a> · <a class="underline" href={site.url}>{site.url.replace('https://', '')}</a>
+      </p>
+    </header>
+
+    <section class="mt-6">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Summary</h2>
+      <p class="mt-2 text-sm leading-relaxed">
+        AI engineering leader and principal architect with 10+ years taking AI from proof of concept to governed production inside regulated enterprises, and 5+ years forward-deployed with customers in government, retail, BFSI, healthcare, sports media and technology. Architected and hands-on built a government-scale agentic AI platform (10K+ daily requests, 98% uptime, cost -30%) and production agentic RAG at a Fortune 500 retailer ($600K/yr savings, resolution time -40%). Built and lead a {numbers.teamSize}-person AI team; hired {numbers.hired}, onboarded {numbers.onboarded}; own {numbers.programs} programs with up to {numbers.concurrentPrograms} concurrent. Established AI governance, evaluation and platform standards. Open to Head of AI, Forward Deployed Engineering Lead, Principal AI Platform and sovereign AI leadership roles; remote, relocation or UAE onsite.
+      </p>
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Selected outcomes</h2>
+      <ul class="mt-2 grid gap-1 text-sm sm:grid-cols-2">
+        {[
+          '10K+ requests/day, 98% uptime, engagement +40% on a government agentic platform',
+          '$600K/yr savings and support resolution time -40% at Circle K',
+          'Answer accuracy +30-40%, hallucinations -30% via evaluation harness and fine-tuning',
+          'Latency -40% through microservices, caching and routing',
+          'AI infrastructure cost -30% via model routing and right-sizing',
+          `${numbers.teamSize}-person team; ${numbers.hired} hired, ${numbers.onboarded} onboarded; ${numbers.programs} programs owned`,
+        ].map((o) => <li class="flex gap-2"><span class="text-accent-500">▪</span><span>{o}</span></li>)}
+      </ul>
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Experience</h2>
+      {experience.map((e) => (
+        <div class="mt-4">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h3 class="font-bold">{e.role}</h3>
+            <span class="text-sm text-[var(--fg-muted)]">{e.period}</span>
+          </div>
+          <div class="text-sm font-medium text-[var(--fg-muted)]">{e.org} · {e.location}</div>
+          <ul class="mt-2 space-y-1 text-sm">
+            {e.highlights.map((h) => <li class="flex gap-2"><span class="text-accent-500">▪</span><span>{h}</span></li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="mt-6 print-break">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Skills</h2>
+      <dl class="mt-2 grid gap-2 text-sm">
+        <div><dt class="inline font-semibold">Agentic systems: </dt><dd class="inline text-[var(--fg-muted)]">{top('agentic').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Retrieval: </dt><dd class="inline text-[var(--fg-muted)]">{top('rag').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Evaluation and observability: </dt><dd class="inline text-[var(--fg-muted)]">{top('evals').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Models and inference: </dt><dd class="inline text-[var(--fg-muted)]">{top('models').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Platform and MLOps: </dt><dd class="inline text-[var(--fg-muted)]">{top('platform').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Governance and sovereignty: </dt><dd class="inline text-[var(--fg-muted)]">{top('governance').join(', ')}</dd></div>
+        <div><dt class="inline font-semibold">Leadership: </dt><dd class="inline text-[var(--fg-muted)]">{top('leadership').join(', ')}</dd></div>
+      </dl>
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Education</h2>
+      {education.map((e) => <p class="mt-2 text-sm">{e.degree}, {e.school}{e.note ? ` (${e.note})` : ''}</p>)}
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Public work</h2>
+      <p class="mt-2 text-sm text-[var(--fg-muted)]">Daily writing on enterprise AI leadership to {site.linkedinFollowers} LinkedIn followers. Case studies, reference architectures, ADRs and 18 long-form articles at {site.url.replace('https://', '')}. Live governed AI agent built for the site.</p>
+    </section>
+  </article>
+</Base>

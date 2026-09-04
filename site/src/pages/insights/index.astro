@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import InsightCard from '@/components/InsightCard.astro';
+import { site } from '@/config';
+const items = (await getCollection('insights')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const tracks = [
+  { id: 'executive', label: 'Executive and CAIO', blurb: 'Decision rights, ROI, operating models, decision architecture. For CEOs, boards and CAIOs.' },
+  { id: 'agentic', label: 'Agentic AI in production', blurb: 'Pilots to production, evaluation, agent SRE, MCP and A2A security, context engineering, computer-use readiness.' },
+  { id: 'platform', label: 'Platform, cost and sovereignty', blurb: 'Inference economics, open-weight versus frontier, data sovereignty in the Gulf, Arabic RAG.' },
+  { id: 'leadership', label: 'Leadership and hiring', blurb: 'Forward-deployed leadership, governance checklists, building AI teams.' },
+];
+---
+<Base title="Insights | Naveen Kumar" description="Long-form writing on enterprise AI leadership, agentic systems in production, platform economics, data sovereignty and governance, from a practitioner who ships." image="/og/insights.png">
+  <Section kicker="Insights" title="Writing for the people who decide, from someone who ships." intro={`Daily posts on LinkedIn to ${site.linkedinFollowers} followers; long-form versions and new pieces here. Each article ends with something you can apply on Monday.`}>
+    <div class="flex flex-wrap gap-2 no-print" id="track-filter">
+      <button data-track="all" class="chip !bg-accent-500 !text-ink-950 !border-accent-500 cursor-pointer">All ({items.length})</button>
+      {tracks.map((t) => <button data-track={t.id} class="chip cursor-pointer">{t.label} ({items.filter((i) => i.data.track === t.id).length})</button>)}
+    </div>
+    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="insight-grid">
+      {items.map((i) => <div data-track={i.data.track}><InsightCard entry={i} /></div>)}
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn btn-secondary" href={site.linkedin} target="_blank" rel="noopener">Follow on LinkedIn</a>
+      <a class="btn btn-ghost" href="/talks">Talks and media</a>
+    </div>
+  </Section>
+</Base>
+<script>
+  const filter = document.getElementById('track-filter');
+  const grid = document.getElementById('insight-grid');
+  filter?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('button');
+    if (!btn) return;
+    const track = btn.dataset.track;
+    filter.querySelectorAll('button').forEach((b) => b.classList.remove('!bg-accent-500', '!text-ink-950', '!border-accent-500'));
+    btn.classList.add('!bg-accent-500', '!text-ink-950', '!border-accent-500');
+    grid?.querySelectorAll<HTMLElement>('[data-track]').forEach((el) => {
+      el.style.display = track === 'all' || el.dataset.track === track ? '' : 'none';
+    });
+  });
+</script>

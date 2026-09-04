@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import Mermaid from '@/components/Mermaid.astro';
+import InsightCard from '@/components/InsightCard.astro';
+import { site } from '@/config';
+
+export async function getStaticPaths() {
+  const items = await getCollection('insights');
+  return items.map((i) => ({ params: { slug: i.id }, props: { entry: i } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const all = (await getCollection('insights')).filter((i) => i.id !== entry.id).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const related = [...all.filter((i) => i.data.track === d.track), ...all.filter((i) => i.data.track !== d.track)].slice(0, 3);
+const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const words = entry.body ? entry.body.split(/\s+/).length : 800;
+const minutes = Math.max(3, Math.round(words / 220));
+const pageUrl = new URL(Astro.url.pathname, site.url).href;
+const shareLinkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  keywords: d.tags.join(', '),
+  mainEntityOfPage: pageUrl,
+};
+---
+<Base title={`${d.title} | Insights`} description={d.description} image="/og/insights.png" type="article" publishedTime={d.date.toISOString()} jsonLd={jsonLd}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
+    <nav class="text-sm text-[var(--fg-muted)]"><a class="hover:underline" href="/insights">Insights</a> / {d.track}</nav>
+    <h1 class="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl">{d.title}</h1>
+    <p class="mt-5 text-lg text-[var(--fg-muted)]">{d.description}</p>
+    <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-[var(--fg-muted)]">
+      <img src="/images/naveen-180.png" width="36" height="36" alt="" class="h-9 w-9 rounded-full object-cover" />
+      <span><strong class="text-[var(--fg)]">{site.name}</strong> · {date} · {minutes} min read</span>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-2">{d.tags.map((t) => <span class="chip">{t}</span>)}</div>
+
+    <div class="prose-site mt-10">
+      <Content />
+    </div>
+
+    <footer class="mt-12 border-t border-[var(--line)] pt-8">
+      <div class="flex flex-wrap gap-3 no-print">
+        {d.linkedin && <a class="btn btn-secondary" href={d.linkedin} target="_blank" rel="noopener">Discuss the original post on LinkedIn</a>}
+        <a class="btn btn-secondary" href={shareLinkedIn} target="_blank" rel="noopener">Share on LinkedIn</a>
+        <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Talk to me about this</a>
+      </div>
+      <div class="card mt-8 flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
+        <picture>
+          <source srcset="/images/naveen-400.webp" type="image/webp" />
+          <img src="/images/naveen-400.png" width="72" height="72" alt="Naveen Kumar" class="h-18 w-18 rounded-2xl object-cover" />
+        </picture>
+        <div>
+          <div class="font-bold">{site.name}</div>
+          <p class="text-sm text-[var(--fg-muted)]">Principal AI Architect and forward-deployed AI engineering leader. Ships agentic AI to production in regulated enterprises; leads a 10-person team; writes daily on enterprise AI leadership.</p>
+          <div class="mt-2 flex gap-3 text-sm"><a class="underline" href="/hire">Hire</a><a class="underline" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a><a class="underline" href="/case-studies">Case studies</a></div>
+        </div>
+      </div>
+    </footer>
+
+    {related.length > 0 && (
+      <section class="mt-14">
+        <h2 class="text-xl font-bold">Read next</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-3">{related.map((i) => <InsightCard entry={i} />)}</div>
+      </section>
+    )}
+  </article>
+  <Mermaid />
+</Base>

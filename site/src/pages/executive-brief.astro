@@ -1,0 +1,78 @@
+---
+import Base from '@/layouts/Base.astro';
+import { site, numbers } from '@/config';
+---
+<Base title="Executive brief | Naveen Kumar" description="One-page executive brief on Naveen Kumar for CEOs, boards, CAIOs and CTOs: what he has delivered, how he operates, where he creates value, and how to engage.">
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Executive brief · one page</p>
+        <h1 class="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">Naveen Kumar</h1>
+        <p class="mt-1 text-[var(--fg-muted)]">Principal AI Architect · Forward-deployed AI engineering leader · {site.location}</p>
+      </div>
+      <img src="/images/naveen-400.webp" width="96" height="96" alt="" class="hidden h-24 w-24 rounded-2xl object-cover sm:block" />
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-2 no-print">
+      <button class="btn btn-secondary !py-2 !px-4 text-sm" onclick="window.print()">Print or save as PDF</button>
+      <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
+    </div>
+
+    <section class="mt-10">
+      <h2 class="text-lg font-bold">The one-line version</h2>
+      <p class="mt-2 text-[var(--fg-muted)]">I take agentic AI from proof of concept to governed production inside regulated enterprises, build the team and operating model that keep it there, and report the result in the business owner's metric.</p>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-bold">Evidence</h2>
+      <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {[
+          ['10K+', 'daily requests, government agentic platform'],
+          ['98%', 'uptime, data-sovereign environment'],
+          ['$600K/yr', 'savings, Fortune 500 retailer'],
+          ['-30%', 'AI infrastructure cost'],
+          ['+30-40%', 'answer accuracy via evaluation'],
+          ['-40%', 'support resolution time'],
+          [String(numbers.teamSize), 'person team built and led'],
+          [String(numbers.programs), `programs, up to ${numbers.concurrentPrograms} concurrent`],
+        ].map(([v, l]) => (
+          <div class="rounded-xl border border-[var(--line)] p-3">
+            <div class="text-xl font-extrabold tracking-tight">{v}</div>
+            <div class="text-xs text-[var(--fg-muted)] leading-tight">{l}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-bold">Where I create value</h2>
+      <ul class="mt-3 space-y-2 text-[var(--fg-muted)]">
+        <li><strong class="text-[var(--fg)]">Pilot to production.</strong> A six-gate method (discovery, scoped slice, POC, production readiness, cutover, run) that has moved agentic AI into production at a UAE government entity and a Fortune 500 retailer, with named owners and measured baselines.</li>
+        <li><strong class="text-[var(--fg)]">Platform, not projects.</strong> A governed reference architecture (orchestration, tool registry, retrieval, model router, evaluation and observability plane) that lets product teams ship agents without re-solving security, quality and cost.</li>
+        <li><strong class="text-[var(--fg)]">Governance in software.</strong> Blast-radius classes, approval rights, evaluation gates and audit implemented in the platform and mapped to NIST AI RMF, EU AI Act and ISO/IEC 42001, so audit questions become queries.</li>
+        <li><strong class="text-[var(--fg)]">Cost discipline.</strong> Model routing, caching and fine-tuned right-sizing that cut infrastructure about 30 percent with quality gated the whole way.</li>
+        <li><strong class="text-[var(--fg)]">People.</strong> Hired {numbers.hired}, onboarded {numbers.onboarded}, built a {numbers.teamSize}-person team and the operating cadence that runs {numbers.programs} programs with up to {numbers.concurrentPrograms} concurrent.</li>
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-bold">How I operate</h2>
+      <p class="mt-2 text-[var(--fg-muted)]">Measure before claiming. Business owners sign success criteria and review quality monthly. Simplicity is a requirement. Prompts are code. Handover is part of the build. I still write production code weekly so my guardrails stay grounded in the real system. I write daily on enterprise AI leadership to {site.linkedinFollowers} followers on LinkedIn.</p>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-bold">Roles I am a strong fit for</h2>
+      <p class="mt-2 text-[var(--fg-muted)]">Head of AI, Head of AI Agents, VP AI, CAIO-track · Forward Deployed Engineering Lead or Manager (frontier labs, applied AI) · Principal or Staff AI Platform Architect · Sovereign and government AI leadership (UAE, GCC) · Fractional CAIO and technical due diligence.</p>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-lg font-bold">Logistics</h2>
+      <p class="mt-2 text-[var(--fg-muted)]">Based in the UAE (GMT+4) with US-East and full European overlap. Open to remote (US or global), employer-sponsored relocation, or UAE and GCC onsite. Standard notice period; interviews can start now. References from executive sponsors, business counterparts and direct reports at offer stage.</p>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-[var(--line)] p-5">
+      <h2 class="text-lg font-bold">Next step</h2>
+      <p class="mt-2 text-[var(--fg-muted)]">Book twenty minutes at <a class="underline" href={site.calcom}>{site.calcom.replace('https://', '')}</a>, email <a class="underline" href={`mailto:${site.email}`}>{site.email}</a>, or WhatsApp {site.phoneUAE}. Full portfolio with case studies, architecture decisions and articles at <a class="underline" href={site.url}>{site.url.replace('https://', '')}</a>.</p>
+    </section>
+  </article>
+</Base>

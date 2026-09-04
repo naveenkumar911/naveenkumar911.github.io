@@ -1,0 +1,71 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import { site } from '@/config';
+
+// Only real, verifiable items belong in `delivered`. Add entries as talks happen.
+// Each item: { title, event, date, kind, link? }
+const delivered: { title: string; event: string; date: string; kind: string; link?: string }[] = [];
+
+const proposals = [
+  {
+    title: 'Why 88 percent of agent pilots die, and the six gates that fix it',
+    abstract: 'A delivery method for taking AI agents from customer conversation to governed production, illustrated with a government-scale platform (10K+ daily requests, 98 percent uptime) and a Fortune 500 retail program ($600K per year). Attendees leave with the gate checklist and the blast-radius model that gets security to say yes.',
+    audience: 'Engineering leaders, heads of AI, forward deployed engineers',
+    targets: 'AI Engineer World\'s Fair, QCon, GITEX Global, AI Everything Abu Dhabi, Dubai AI Week',
+  },
+  {
+    title: 'Sovereign agentic AI: three tiers, one router, zero cross-border calls',
+    abstract: 'How to satisfy data residency for LLM systems without giving up capability: regional managed models, sovereign-hosted open weights and an air-gapped tier behind a residency-aware router, with derived data (embeddings, traces, caches) treated as data. Lessons from a UAE government deployment, including Arabic evaluation.',
+    audience: 'Public-sector CIOs and CAIOs, regulated-industry architects',
+    targets: 'GITEX Global, AI Everything, World Governments Summit tech track, Gartner IT Symposium Dubai',
+  },
+  {
+    title: 'Evals as a release gate: ending silent regressions in agent systems',
+    abstract: 'Golden sets owned by the business, layered metrics, calibrated LLM-as-judge and CI gates that block bad prompt, retrieval and model changes. Results: accuracy up 30 to 40 percent, hallucinations down about 30 percent, and zero silent regressions since gating.',
+    audience: 'AI platform engineers, MLOps and LLMOps teams',
+    targets: 'MLOps Community, Data Council, PyData, AI Engineer Summit',
+  },
+];
+---
+<Base title="Talks and media | Naveen Kumar" description="Speaking topics, proposals and media on enterprise agentic AI, sovereign AI, evaluation and forward-deployed delivery from Naveen Kumar.">
+  <Section kicker="Talks and media" title="Speaking on what I have shipped." intro="I speak about production agentic AI, sovereign deployment, evaluation and the forward-deployed method. Available for conferences, executive roundtables, podcasts and internal leadership sessions.">
+    {delivered.length > 0 ? (
+      <div class="grid gap-5 md:grid-cols-2">
+        {delivered.map((t) => (
+          <div class="card p-6">
+            <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">{t.kind} · {t.date}</div>
+            <h3 class="mt-2 text-lg font-bold">{t.title}</h3>
+            <p class="mt-1 text-sm text-[var(--fg-muted)]">{t.event}</p>
+            {t.link && <a class="mt-3 inline-block text-sm underline" href={t.link} target="_blank" rel="noopener">Watch or read</a>}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="card p-6">
+        <h3 class="font-bold">Daily public writing, 16K followers</h3>
+        <p class="mt-2 text-sm text-[var(--fg-muted)]">My primary public channel today is LinkedIn, where I write daily on enterprise AI leadership, agentic operating models, governance and ROI to {site.linkedinFollowers} followers, with long-form versions in <a class="underline" href="/insights">Insights</a>. Conference talks are listed here as they are delivered.</p>
+        <a class="btn btn-secondary mt-4 !py-2 !px-4 text-sm" href={site.linkedin} target="_blank" rel="noopener">Follow on LinkedIn</a>
+      </div>
+    )}
+  </Section>
+
+  <Section kicker="Available talks" title="Three talks ready to give." intro="Each is grounded in a delivered system and ends with something the audience can use on Monday. Abstracts below; slides and a speaker one-pager on request." class="bg-[var(--bg-elev)]/40">
+    <div class="grid gap-5">
+      {proposals.map((p) => (
+        <div class="card p-6">
+          <h3 class="text-xl font-bold">{p.title}</h3>
+          <p class="mt-3 text-[var(--fg-muted)]">{p.abstract}</p>
+          <div class="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+            <div><span class="font-semibold">Audience:</span> <span class="text-[var(--fg-muted)]">{p.audience}</span></div>
+            <div><span class="font-semibold">Suitable for:</span> <span class="text-[var(--fg-muted)]">{p.targets}</span></div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href={`mailto:${site.email}?subject=Speaking%20invitation`}>Invite me to speak</a>
+      <a class="btn btn-secondary" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </Section>
+</Base>

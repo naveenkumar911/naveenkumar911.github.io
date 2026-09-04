@@ -1,0 +1,31 @@
+name = "ask-naveen"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Public configuration. Secrets (NVIDIA_API_KEY) are set with `wrangler secret put`, never here.
+[vars]
+ALLOWED_ORIGINS = "https://naveenkumar911.github.io,http://localhost:4321"
+# Comma-separated: first is primary, the rest are fallbacks tried on model errors (e.g. retirement, 4xx/5xx).
+NIM_MODEL = "nvidia/llama-3.1-nemotron-70b-instruct,mistralai/mistral-large-2-instruct,openai/gpt-oss-20b"
+NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+MAX_OUTPUT_TOKENS = "1100"
+MAX_TURNS = "12"
+MAX_INPUT_CHARS = "6000"
+
+# Rate limiting uses Cloudflare's free Rate Limiting binding (no KV required).
+# Periods supported: 10 or 60 seconds. Keys are hashed client IPs.
+[[unsafe.bindings]]
+name = "RL_BURST"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 3, period = 10 }
+
+[[unsafe.bindings]]
+name = "RL_MINUTE"
+type = "ratelimit"
+namespace_id = "1002"
+simple = { limit = 8, period = 60 }
+
+[observability]
+enabled = true

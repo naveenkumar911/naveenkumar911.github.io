@@ -1,0 +1,68 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import { site, numbers } from '@/config';
+import { experience } from '@/data/profile';
+---
+<Base title="Leadership | Naveen Kumar" description="How Naveen Kumar builds and leads AI engineering teams: hiring bar, onboarding, operating model, stakeholder and vendor management, and the outcomes the team owns.">
+  <Section kicker="Leadership" title="Built the team, set the bar, owned the outcomes." intro="Head of AI and FDE-leadership searches look for one thing above all: a named owner who took AI from pilot to production against a metric, and built the people and operating model that keep it there.">
+    <div class="grid gap-5 md:grid-cols-4">
+      {[
+        [String(numbers.teamSize), 'person team', 'AI engineers, data scientists, ML engineers and AIOps, plus cross-functional squads and partner staff.'],
+        [`${numbers.hired} / ${numbers.onboarded}`, 'hired / onboarded', `Hired ${numbers.hired} engineers through my bar; onboarded ${numbers.onboarded} including implementation-partner engineers into the method.`],
+        [String(numbers.programs), 'programs owned', `Forward-deployed AI programs from ideation to production, up to ${numbers.concurrentPrograms} running concurrently.`],
+        ['Escalation', 'point', 'Senior escalation for delivery risk, technical blockers and customer concerns across all programs.'],
+      ].map(([v, l, d]) => (
+        <div class="card p-6">
+          <div class="text-3xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{v}</div>
+          <div class="font-semibold">{l}</div>
+          <p class="mt-2 text-sm text-[var(--fg-muted)]">{d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="Operating model" title="How the team runs." class="bg-[var(--bg-elev)]/40">
+    <div class="grid gap-5 md:grid-cols-2">
+      {[
+        ['Hiring bar', 'Has shipped, not demoed, an AI system into someone else\'s production environment. Can describe baseline, metric and what happened after cutover. Writes production code and is honest about what they would not build. Treats evaluation and handover as part of the build. I run the final technical and judgment interview for every hire.'],
+        ['Onboarding into the method', 'Week one: shadow a live program and read the playbook, reference architecture and ADRs. Week two: own a gate on a running program with a senior pair. Month two: own an engagement slice end to end. Every engineer learns discovery, golden sets and runbooks before they learn our prompts.'],
+        ['Ownership and leveling', 'Engagements have one owner. Owners run the gates, present to the business owner, and are accountable for the metric. Leveling is based on scope owned and judgment shown, reviewed twice a year with written feedback. Career conversations are quarterly.'],
+        ['Architecture guardrails', 'Reference architecture, ADRs, design review before build and code review before merge. Guardrails exist so squads can move fast without re-solving security, evaluation and observability. I write the first ADR on anything new and review the rest.'],
+        ['Delivery cadence', 'Weekly program review across all engagements: gate status, risks, escalations, where senior attention goes next week. Monthly cost and quality review with business owners. Quarterly roadmap with Directors.'],
+        ['Stakeholders and vendors', 'Directors and business owners sign success criteria and review quality monthly. Implementation partners and vendors are managed through architecture reviews, milestone acceptance and operational handover, with model and vendor selection documented and revisited.'],
+        ['Culture', 'Measure before you claim. Simplicity is a requirement. Prompts are code. Handover is part of the build. Disagree in the review, commit in the sprint. I still ship code weekly so the guardrails stay grounded in reality.'],
+        ['Growing leaders', 'Senior engineers run their own programs and present to executives. Engineers who onboarded into the method now lead gates on other programs. The goal is a team that runs the method without me in every room.'],
+      ].map(([t, d]) => (
+        <div class="card p-6">
+          <h3 class="font-bold">{t}</h3>
+          <p class="mt-2 text-sm text-[var(--fg-muted)] leading-relaxed">{d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="Career" title="Ten years of customer-embedded AI, from data scientist to team leader.">
+    <ol class="relative border-l border-[var(--line)] pl-6">
+      {experience.map((e) => (
+        <li class="mb-10">
+          <span class="absolute -left-[7px] mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--bg)] bg-accent-500"></span>
+          <div class="text-sm text-[var(--fg-muted)]">{e.period} · {e.location}</div>
+          <h3 class="mt-1 text-xl font-bold">{e.role}</h3>
+          <div class="font-medium text-[var(--fg-muted)]">{e.org}</div>
+          <p class="mt-3 max-w-3xl text-[var(--fg-muted)]">{e.summary}</p>
+          <ul class="mt-3 max-w-3xl space-y-2 text-sm">
+            {e.highlights.map((h) => (
+              <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"></span><span>{h}</span></li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Discuss a leadership role</a>
+      <a class="btn btn-secondary" href="/executive-brief">Executive brief</a>
+      <a class="btn btn-ghost" href="/resume">Resume</a>
+    </div>
+  </Section>
+</Base>

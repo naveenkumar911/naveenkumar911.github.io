@@ -1,0 +1,37 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import { skillGroups } from '@/data/skills';
+import { site } from '@/config';
+const depthLabel = { expert: 'Expert: designed and shipped to production, can lead and teach', advanced: 'Advanced: shipped in production, independent', working: 'Working: used in delivery, would pair with a specialist at scale' };
+const depthClass = { expert: 'bg-accent-500 text-ink-950', advanced: 'bg-accent-500/25 text-[var(--fg)]', working: 'border border-[var(--line)] text-[var(--fg-muted)]' };
+---
+<Base title="Skills matrix | Naveen Kumar" description="Skills organised by what 2026 AI hiring screens for: agentic systems, retrieval, evaluation and observability, models and inference, platform and MLOps, governance and sovereignty, leadership and forward-deployed delivery.">
+  <Section kicker="Skills" title="Organised by what the market screens for, with honest depth." intro="Every group states why it matters to hiring teams in 2026 and how deep I go. Depth is self-assessed against a simple standard; ask my AI or book a call to probe any item.">
+    <div class="mb-8 flex flex-wrap gap-3 text-xs">
+      {(['expert', 'advanced', 'working'] as const).map((d) => (
+        <span class="flex items-center gap-2"><span class={`inline-block h-3 w-3 rounded-full ${depthClass[d]}`}></span>{depthLabel[d]}</span>
+      ))}
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {skillGroups.map((g) => (
+        <div id={g.id} class="card p-6">
+          <h2 class="text-xl font-bold">{g.title}</h2>
+          <p class="mt-2 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">Why it matters now:</strong> {g.demand}</p>
+          <ul class="mt-4 space-y-2">
+            {g.items.map((i) => (
+              <li class="flex items-start gap-3 text-sm">
+                <span class={`mt-1 inline-block h-3 w-3 shrink-0 rounded-full ${depthClass[i.depth]}`} title={i.depth}></span>
+                <span>{i.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Probe any of these on a call</a>
+      <a class="btn btn-secondary" href="/case-studies">See them applied</a>
+    </div>
+  </Section>
+</Base>

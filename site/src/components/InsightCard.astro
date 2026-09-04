@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { entry: CollectionEntry<'insights'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const trackLabel: Record<string, string> = {
+  executive: 'Executive and CAIO',
+  agentic: 'Agentic AI in production',
+  platform: 'Platform, cost and sovereignty',
+  leadership: 'Leadership and hiring',
+};
+const words = entry.body ? entry.body.split(/\s+/).length : 800;
+const minutes = Math.max(3, Math.round(words / 220));
+const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<a href={`/insights/${entry.id}`} class="card group flex h-full flex-col p-6 transition-colors hover:border-accent-500">
+  <div class="flex items-center justify-between gap-3 text-xs text-[var(--fg-muted)]">
+    <span class="font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">{trackLabel[d.track]}</span>
+    <span>{minutes} min</span>
+  </div>
+  <h3 class="mt-3 text-lg font-bold leading-snug group-hover:text-accent-600 dark:group-hover:text-accent-400">{d.title}</h3>
+  <p class="mt-3 text-sm text-[var(--fg-muted)] leading-relaxed line-clamp-3">{d.description}</p>
+  <div class="mt-auto flex items-center justify-between pt-4 text-xs text-[var(--fg-muted)]">
+    <span>{date}</span>
+    {d.linkedin && <span class="chip !py-0.5 !px-2 !text-[11px]">From LinkedIn</span>}
+  </div>
+</a>

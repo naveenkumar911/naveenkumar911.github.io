@@ -1,0 +1,70 @@
+---
+import { site } from '@/config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  publishedTime?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  image = site.ogImage,
+  type = 'website',
+  publishedTime,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const imageUrl = new URL(image, site.url).href;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  image: new URL('/images/naveen-800.webp', site.url).href,
+  jobTitle: 'Principal AI Architect and Forward-Deployed AI Engineering Leader',
+  worksFor: { '@type': 'Organization', name: 'CPC / ADEK' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
+  email: `mailto:${site.email}`,
+  sameAs: [site.linkedin, site.github],
+  knowsAbout: [
+    'Agentic AI', 'Multi-Agent Systems', 'Enterprise RAG', 'LLM Evaluation', 'AI Observability',
+    'Model Context Protocol', 'LLMOps', 'MLOps', 'AI Governance', 'Forward Deployed Engineering',
+    'AI Architecture', 'Data Sovereignty', 'AI Strategy',
+  ],
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Panjab University' },
+};
+
+const ld = jsonLd ? (Array.isArray(jsonLd) ? [person, ...jsonLd] : [person, jsonLd]) : [person];
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{type === 'profile' && <meta property="profile:first_name" content="Naveen" />}
+{type === 'profile' && <meta property="profile:last_name" content="Kumar" />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />

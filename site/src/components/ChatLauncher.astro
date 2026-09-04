@@ -1,0 +1,5 @@
+---
+import ChatWidget from '@/components/ChatWidget';
+import { site } from '@/config';
+---
+<ChatWidget client:idle endpoint={site.chatEndpoint} calcom={site.calcom} email={site.email} />

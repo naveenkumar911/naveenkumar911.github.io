@@ -1,0 +1,55 @@
+---
+// Renders ```mermaid fenced blocks (emitted by Shiki as <pre data-language="mermaid">) into SVG on the client.
+// mermaid is lazy-loaded only on pages that include this component and only if a diagram exists.
+---
+<script>
+  async function renderAll() {
+    const blocks = Array.from(document.querySelectorAll<HTMLPreElement>('pre[data-language="mermaid"], pre.language-mermaid'));
+    if (!blocks.length) return;
+    const dark = document.documentElement.classList.contains('dark');
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: 'strict',
+      theme: dark ? 'dark' : 'neutral',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      themeVariables: dark
+        ? { primaryColor: '#20263a', primaryTextColor: '#f6f7fb', primaryBorderColor: '#2bbf9b', lineColor: '#a9b3cf', secondaryColor: '#121626', tertiaryColor: '#0a0c17' }
+        : { primaryColor: '#e9ecf4', primaryTextColor: '#121626', primaryBorderColor: '#1c9a7c', lineColor: '#59668d', secondaryColor: '#ffffff', tertiaryColor: '#f6f7fb' },
+    });
+    let i = 0;
+    for (const pre of blocks) {
+      const code = pre.textContent ?? '';
+      const holder = document.createElement('div');
+      holder.className = 'mermaid-wrap';
+      holder.setAttribute('data-mermaid-src', code);
+      try {
+        const { svg } = await mermaid.render(`mmd-${Date.now()}-${i++}`, code);
+        holder.innerHTML = svg;
+        pre.replaceWith(holder);
+      } catch (e) {
+        console.warn('mermaid render failed', e);
+      }
+    }
+  }
+
+  async function rerenderForTheme() {
+    const wraps = Array.from(document.querySelectorAll<HTMLDivElement>('.mermaid-wrap[data-mermaid-src]'));
+    if (!wraps.length) return;
+    const dark = document.documentElement.classList.contains('dark');
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: dark ? 'dark' : 'neutral', fontFamily: 'Inter, system-ui, sans-serif' });
+    let i = 0;
+    for (const w of wraps) {
+      const code = w.getAttribute('data-mermaid-src') ?? '';
+      try {
+        const { svg } = await mermaid.render(`mmd-t-${Date.now()}-${i++}`, code);
+        w.innerHTML = svg;
+      } catch {}
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderAll);
+  else renderAll();
+  document.addEventListener('themechange', rerenderForTheme);
+</script>

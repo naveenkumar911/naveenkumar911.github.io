@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import CaseStudyCard from '@/components/CaseStudyCard.astro';
+const items = (await getCollection('caseStudies')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Case studies | Naveen Kumar" description="Production agentic AI, enterprise RAG, evaluation harnesses and ML delivery across government, retail, asset management, pharma and sports media. Architecture, decisions and outcomes." image="/og/case-studies.png">
+  <Section kicker="Case studies" title="Production systems, decisions included." intro="Each case study follows the same structure a staff-level design review would: context and constraints, success criteria, architecture, key decisions as ADRs, what shipped, outcomes, and what I would change. Client names are shown with permission; a few details are generalised where confidentiality requires.">
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((c) => <CaseStudyCard entry={c} />)}
+    </div>
+  </Section>
+</Base>

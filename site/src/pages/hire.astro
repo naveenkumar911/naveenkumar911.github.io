@@ -1,0 +1,122 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import CalEmbed from '@/components/CalEmbed.astro';
+import { site } from '@/config';
+import { roles } from '@/data/roles';
+
+const engagements = [
+  {
+    id: 'full-time',
+    title: 'Full-time leadership or principal role',
+    who: 'Frontier labs, AI-native companies, enterprises, government and sovereign AI entities.',
+    how: 'Head of AI, Head of AI Agents, VP AI, CAIO-track; Forward Deployed Engineering Lead or Manager; Principal or Staff AI Platform Architect. Remote for US or global teams with US-East overlap from GMT+4, relocation to the US, UK or EU, or onsite in the UAE and GCC.',
+    start: 'Available to start within a standard notice period. Interview process can start immediately.',
+  },
+  {
+    id: 'fractional',
+    title: 'Fractional CAIO or AI advisory',
+    who: 'Boards, founders, PE portfolio companies and CTOs without a dedicated AI leader.',
+    how: 'Typical shapes: a 6-week AI operating-model design; an architecture and vendor review of an agent program; an evaluation and governance setup; hands-on leadership taking one high-value agent from pilot to production against a named metric. One to two days a week, remote, with onsite kickoffs where useful.',
+    start: 'Two to three engagements at a time so each gets senior attention.',
+  },
+  {
+    id: 'diligence',
+    title: 'Technical due diligence and architecture review',
+    who: 'Investors, acquirers, executive teams evaluating an AI vendor, platform or internal program.',
+    how: 'A two-to-three-week review producing a written assessment of architecture, evaluation practice, security and governance posture, cost structure, team and delivery risk, with a prioritised remediation plan. Grounded in code and traces, not decks.',
+    start: 'Scoped and quoted after a 20-minute call.',
+  },
+];
+---
+<Base title="Hire Naveen Kumar | Head of AI, FDE Lead, Principal Architect, Fractional CAIO" description="How to engage Naveen Kumar: full-time leadership or principal roles (remote, relocation, UAE onsite), fractional CAIO and advisory, technical due diligence. Book a 20-minute call." image="/og/hire.png">
+  <Section kicker="Hire" title="Three ways to engage. One conversation to start." intro="Twenty minutes is enough to tell whether there is a fit. I come prepared with questions about your outcomes and constraints, not a pitch.">
+    <div class="grid gap-5 md:grid-cols-3">
+      {engagements.map((e) => (
+        <div id={e.id} class="card flex flex-col p-6">
+          <h3 class="text-lg font-bold">{e.title}</h3>
+          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">For:</strong> {e.who}</p>
+          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">How:</strong> {e.how}</p>
+          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">Availability:</strong> {e.start}</p>
+          <a class="btn btn-primary mt-auto pt-3" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="By role" title="What I would do in the first 90 days." class="bg-[var(--bg-elev)]/40">
+    <div class="space-y-5">
+      {roles.map((r) => (
+        <details id={r.id} class="card group p-6" open={r.id === 'fde'}>
+          <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold">
+            <span>{r.label} <span class="ml-2 text-sm font-normal text-[var(--fg-muted)]">{r.audience}</span></span>
+            <svg class="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="mt-4 grid gap-6 md:grid-cols-3">
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 1-30: Learn and baseline</div>
+              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+                {r.id === 'fde' && 'Meet every customer team and read every engagement. Inventory programs by gate, owner and metric. Identify the two programs most at risk and the one closest to a referenceable win. Ship code on one of them.'}
+                {r.id === 'head-of-ai' && 'Build the use-case register: every AI initiative, owner, baseline, risk class. Meet the business owners and the CFO. Assess platform, team and vendor posture. Identify one high-value workflow to take to production as the proof point.'}
+                {r.id === 'platform' && 'Read the code and the traces. Map the current architecture against the reference architecture. Find where evaluation, observability, cost and security are missing. Write the first ADRs. Fix the most dangerous gap.'}
+                {r.id === 'sovereign' && 'Map data flows against residency requirements, component by component, including derived data. Meet Directors and security. Inventory Arabic and multilingual quality. Identify the restricted workload that a sovereign tier would unblock.'}
+                {r.id === 'fractional' && 'Two discovery weeks: leadership interviews, program inventory, architecture and vendor review, cost and quality baseline. Deliver a written assessment with a prioritised plan and the one agent to take to production first.'}
+              </p>
+            </div>
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 31-60: Install the method</div>
+              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+                {r.id === 'fde' && 'Roll out the six gates with templates. Put golden sets and readiness checklists on every program. Set the hiring bar and open roles. Start the weekly program review and the field-to-product feedback log.'}
+                {r.id === 'head-of-ai' && 'Stand up the governance forum with intervention rights. Define the platform direction and the team plan. Put evaluation gates and cost metering on the proof-point workflow. Publish the AI operating model to the executive team.'}
+                {r.id === 'platform' && 'Ship the evaluation harness and tracing. Introduce the tool registry with blast-radius classes. Stand up the model router with cost budgets. Establish design and code review gates. Open the platform to one product team with a template.'}
+                {r.id === 'sovereign' && 'Design the three-tier routing with residency tags. Stand up in-region tracing and storage. Build Arabic golden sets with business owners. Align governance to ISO/IEC 42001 and produce the evidence map for audit.'}
+                {r.id === 'fractional' && 'Design the operating model: register, owners, gates, governance forum. Set up evaluation and cost metering on the first agent. Coach the internal lead who will own it. Run the vendor and build-versus-buy decisions.'}
+              </p>
+            </div>
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 61-90: Show the number</div>
+              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+                {r.id === 'fde' && 'Take the closest program through cutover and publish the metric. Unblock or stop the at-risk programs. Present the portfolio view and the product feedback to leadership. First hires onboarded into the method.'}
+                {r.id === 'head-of-ai' && 'Proof-point workflow in production with a measured outcome the business owner signs. First quarterly review with the board or executive team. Roadmap for the next three workflows and the team to deliver them.'}
+                {r.id === 'platform' && 'First workflow shipped on the platform by a product team without platform intervention. Quality, cost and latency SLOs with owners. Regression gates blocking bad changes. Reference architecture adopted.'}
+                {r.id === 'sovereign' && 'Restricted workload in production on the sovereign tier. Per-language quality at parity on the golden set. Governance evidence pack reviewed by security and audit. Vendor governance in place.'}
+                {r.id === 'fractional' && 'First agent in production with a measured outcome. Governance forum running without me. Written handover of the operating model and a decision on whether a full-time leader is now justified.'}
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.calcom} target="_blank" rel="noopener">{r.cta}</a>
+            <a class="btn btn-secondary !py-2 !px-4 text-sm" href={`/#hire-me-as?track=${r.id}`}>Evidence for this track</a>
+          </div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="Logistics" title="The practical details.">
+    <div class="grid gap-5 md:grid-cols-3">
+      {[
+        ['Location and time zone', `Based in ${site.location}. Working hours flex to overlap US-East mornings and all of Europe. Frequent travel is fine; I have spent most of ten years embedded at customer sites.`],
+        ['Work authorisation', 'Indian national on a UAE residence visa. Open to employer-sponsored relocation to the US (O-1 or H-1B routes), UK, EU or Singapore, and to remote contracts through an employer of record.'],
+        ['Notice and start', 'Standard notice period at current employer. Interview processes can start immediately; I can accommodate multi-stage loops within one to two weeks.'],
+        ['References', 'Available on request at offer stage from executive sponsors, business counterparts and direct reports.'],
+        ['Compensation', 'Discussed on the call, with the role and location. I am targeting the top of the market for the roles listed here and am transparent about it early so neither side wastes time.'],
+        ['What I need from you', 'A named outcome you want in 12 months, the constraints (residency, regulators, budget), and who owns the result today. I will tell you honestly whether I am the right person.'],
+      ].map(([t, d]) => (
+        <div class="card p-6">
+          <h3 class="font-bold">{t}</h3>
+          <p class="mt-2 text-sm text-[var(--fg-muted)] leading-relaxed">{d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="book" kicker="Book" title="Pick a time." intro="Twenty minutes, video, no slides. If Cal.com does not load, email or WhatsApp me and I will send times." class="bg-[var(--bg-elev)]/40">
+    <CalEmbed />
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a class="btn btn-secondary" href={`mailto:${site.email}?subject=Intro%20call`}>Email {site.email}</a>
+      <a class="btn btn-secondary" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp {site.phoneUAE}</a>
+      <a class="btn btn-ghost" href="/contact">Contact form</a>
+    </div>
+  </Section>
+</Base>

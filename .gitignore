@@ -1,0 +1,23 @@
+# secrets and private inputs
+*.local.*
+.env
+.env.*
+!.env.example
+.dev.vars
+.wrangler/
+
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+.output/
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# lighthouse reports
+lighthouse-report*
