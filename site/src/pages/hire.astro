@@ -33,11 +33,11 @@ const engagements = [
   <Section kicker="Hire" title="Three ways to engage. One conversation to start." intro="Twenty minutes is enough to tell whether there is a fit. I come prepared with questions about your outcomes and constraints, not a pitch.">
     <div class="grid gap-5 md:grid-cols-3">
       {engagements.map((e) => (
-        <div id={e.id} class="card flex flex-col p-6">
-          <h3 class="text-lg font-bold">{e.title}</h3>
-          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">For:</strong> {e.who}</p>
-          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">How:</strong> {e.how}</p>
-          <p class="mt-3 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">Availability:</strong> {e.start}</p>
+        <div id={e.id} class="card flex flex-col p-7">
+          <h3 class="h-card">{e.title}</h3>
+          <p class="mt-3 text-base text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">For:</strong> {e.who}</p>
+          <p class="mt-3 text-base text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">How:</strong> {e.how}</p>
+          <p class="mt-3 text-base text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">Availability:</strong> {e.start}</p>
           <a class="btn btn-primary mt-auto pt-3" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
         </div>
       ))}
@@ -47,15 +47,15 @@ const engagements = [
   <Section kicker="By role" title="What I would do in the first 90 days." class="bg-[var(--bg-elev)]/40">
     <div class="space-y-5">
       {roles.map((r) => (
-        <details id={r.id} class="card group p-6" open={r.id === 'fde'}>
-          <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold">
-            <span>{r.label} <span class="ml-2 text-sm font-normal text-[var(--fg-muted)]">{r.audience}</span></span>
+        <details id={r.id} class="card group p-7" open={r.id === 'fde'}>
+          <summary class="flex cursor-pointer items-center justify-between gap-4 text-xl font-bold md:text-2xl">
+            <span>{r.label} <span class="ml-2 text-base font-normal text-[var(--fg-muted)]">{r.audience}</span></span>
             <svg class="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <div class="mt-4 grid gap-6 md:grid-cols-3">
             <div>
-              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 1-30: Learn and baseline</div>
-              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+              <div class="kicker">Days 1-30: Learn and baseline</div>
+              <p class="mt-2 text-base text-[var(--fg-muted)]">
                 {r.id === 'fde' && 'Meet every customer team and read every engagement. Inventory programs by gate, owner and metric. Identify the two programs most at risk and the one closest to a referenceable win. Ship code on one of them.'}
                 {r.id === 'head-of-ai' && 'Build the use-case register: every AI initiative, owner, baseline, risk class. Meet the business owners and the CFO. Assess platform, team and vendor posture. Identify one high-value workflow to take to production as the proof point.'}
                 {r.id === 'platform' && 'Read the code and the traces. Map the current architecture against the reference architecture. Find where evaluation, observability, cost and security are missing. Write the first ADRs. Fix the most dangerous gap.'}
@@ -64,8 +64,8 @@ const engagements = [
               </p>
             </div>
             <div>
-              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 31-60: Install the method</div>
-              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+              <div class="kicker">Days 31-60: Install the method</div>
+              <p class="mt-2 text-base text-[var(--fg-muted)]">
                 {r.id === 'fde' && 'Roll out the six gates with templates. Put golden sets and readiness checklists on every program. Set the hiring bar and open roles. Start the weekly program review and the field-to-product feedback log.'}
                 {r.id === 'head-of-ai' && 'Stand up the governance forum with intervention rights. Define the platform direction and the team plan. Put evaluation gates and cost metering on the proof-point workflow. Publish the AI operating model to the executive team.'}
                 {r.id === 'platform' && 'Ship the evaluation harness and tracing. Introduce the tool registry with blast-radius classes. Stand up the model router with cost budgets. Establish design and code review gates. Open the platform to one product team with a template.'}
@@ -74,8 +74,8 @@ const engagements = [
               </p>
             </div>
             <div>
-              <div class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Days 61-90: Show the number</div>
-              <p class="mt-2 text-sm text-[var(--fg-muted)]">
+              <div class="kicker">Days 61-90: Show the number</div>
+              <p class="mt-2 text-base text-[var(--fg-muted)]">
                 {r.id === 'fde' && 'Take the closest program through cutover and publish the metric. Unblock or stop the at-risk programs. Present the portfolio view and the product feedback to leadership. First hires onboarded into the method.'}
                 {r.id === 'head-of-ai' && 'Proof-point workflow in production with a measured outcome the business owner signs. First quarterly review with the board or executive team. Roadmap for the next three workflows and the team to deliver them.'}
                 {r.id === 'platform' && 'First workflow shipped on the platform by a product team without platform intervention. Quality, cost and latency SLOs with owners. Regression gates blocking bad changes. Reference architecture adopted.'}
@@ -93,7 +93,7 @@ const engagements = [
     </div>
   </Section>
 
-  <Section kicker="Logistics" title="The practical details.">
+  <Section id="logistics" kicker="Logistics" title="The practical details.">
     <div class="grid gap-5 md:grid-cols-3">
       {[
         ['Location and time zone', `Based in ${site.location}. Working hours flex to overlap US-East mornings and all of Europe. Frequent travel is fine; I have spent most of ten years embedded at customer sites.`],
@@ -103,9 +103,9 @@ const engagements = [
         ['Compensation', 'Discussed on the call, with the role and location. I am targeting the top of the market for the roles listed here and am transparent about it early so neither side wastes time.'],
         ['What I need from you', 'A named outcome you want in 12 months, the constraints (residency, regulators, budget), and who owns the result today. I will tell you honestly whether I am the right person.'],
       ].map(([t, d]) => (
-        <div class="card p-6">
-          <h3 class="font-bold">{t}</h3>
-          <p class="mt-2 text-sm text-[var(--fg-muted)] leading-relaxed">{d}</p>
+        <div class="card p-7">
+          <h3 class="h-card">{t}</h3>
+          <p class="mt-2 text-base text-[var(--fg-muted)] leading-relaxed">{d}</p>
         </div>
       ))}
     </div>

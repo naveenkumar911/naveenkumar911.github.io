@@ -13,15 +13,15 @@ const kindLabel: Record<string, string> = {
 ---
 <Base title="Architecture and thinking | Naveen Kumar" description="Reference architectures, playbooks, ADRs and methodologies for governed agentic AI: platform design, forward-deployed delivery, evaluation, MCP/A2A security, model routing and governance mapping.">
   <Section kicker="Architecture and thinking" title="How I make decisions, written down." intro="Staff-level hiring committees want to see judgment, not just outcomes. These are the reference architectures, playbooks and decision records I actually use, with the trade-offs stated.">
-    <div class="grid gap-5 md:grid-cols-2">
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {items.map((a) => (
-        <a href={`/architecture/${a.id}`} class="card group flex h-full flex-col p-6 transition-colors hover:border-accent-500">
-          <div class="flex items-center justify-between text-xs">
-            <span class="font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">{kindLabel[a.data.kind]}</span>
-            <span class="chip !py-0.5 !px-2 !text-[11px]">{a.data.status.split(';')[0]}</span>
+        <a href={`/architecture/${a.id}`} class="card group flex h-full flex-col p-7 transition-colors hover:border-accent-500">
+          <div class="flex items-center justify-between gap-3 text-sm">
+            <span class="kicker">{kindLabel[a.data.kind]}</span>
+            <span class="chip !py-0.5 !px-2.5 !text-xs">{a.data.status.split(';')[0]}</span>
           </div>
-          <h3 class="mt-3 text-xl font-bold leading-snug group-hover:text-accent-600 dark:group-hover:text-accent-400">{a.data.title}</h3>
-          <p class="mt-3 text-sm text-[var(--fg-muted)] leading-relaxed">{a.data.summary}</p>
+          <h3 class="h-card mt-4 group-hover:text-accent-600 dark:group-hover:text-accent-400">{a.data.title}</h3>
+          <p class="mt-4 text-base leading-relaxed text-[var(--fg-muted)]">{a.data.summary}</p>
         </a>
       ))}
     </div>

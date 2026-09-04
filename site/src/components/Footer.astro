@@ -3,22 +3,22 @@ import { site } from '@/config';
 const year = new Date().getFullYear();
 ---
 <footer class="border-t border-[var(--line)] no-print">
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+  <div class="page grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
     <div>
-      <div class="flex items-center gap-2 font-bold">
-        <span class="grid h-8 w-8 place-items-center rounded-lg bg-accent-500 text-ink-950 font-extrabold">NK</span>
+      <div class="flex items-center gap-3 text-xl font-extrabold">
+        <span class="grid h-10 w-10 place-items-center rounded-xl text-lg bg-accent-500 text-ink-950 font-extrabold">NK</span>
         {site.name}
       </div>
-      <p class="mt-3 max-w-sm text-sm text-[var(--fg-muted)]">{site.tagline}</p>
-      <p class="mt-3 text-sm text-[var(--fg-muted)]">{site.location}. {site.availability}.</p>
+      <p class="mt-4 max-w-md text-base text-[var(--fg-muted)]">{site.tagline}</p>
+      <p class="mt-3 text-base text-[var(--fg-muted)]">{site.location}. {site.availability}.</p>
       <div class="mt-5 flex flex-wrap gap-2">
         <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
         <a class="btn btn-secondary !py-2 !px-4 text-sm" href={`mailto:${site.email}`}>Email</a>
       </div>
     </div>
     <div>
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">Proof</h3>
-      <ul class="mt-3 space-y-2 text-sm">
+      <h3 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">Proof</h3>
+      <ul class="mt-4 space-y-2.5 text-base">
         <li><a class="hover:underline" href="/case-studies">Case studies</a></li>
         <li><a class="hover:underline" href="/architecture">Architecture and ADRs</a></li>
         <li><a class="hover:underline" href="/insights">Insights</a></li>
@@ -27,8 +27,8 @@ const year = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">For hiring teams</h3>
-      <ul class="mt-3 space-y-2 text-sm">
+      <h3 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">For hiring teams</h3>
+      <ul class="mt-4 space-y-2.5 text-base">
         <li><a class="hover:underline" href="/hire">How to hire me</a></li>
         <li><a class="hover:underline" href="/executive-brief">Executive brief</a></li>
         <li><a class="hover:underline" href="/leadership">Leadership</a></li>
@@ -37,8 +37,8 @@ const year = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">Connect</h3>
-      <ul class="mt-3 space-y-2 text-sm">
+      <h3 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">Connect</h3>
+      <ul class="mt-4 space-y-2.5 text-base">
         <li><a class="hover:underline" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ({site.linkedinFollowers} followers)</a></li>
         <li><a class="hover:underline" href={site.github} target="_blank" rel="noopener">GitHub</a></li>
         <li><a class="hover:underline" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a></li>
@@ -48,7 +48,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
   <div class="border-t border-[var(--line)]">
-    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-[var(--fg-muted)] sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <div class="page flex flex-col gap-2 py-6 text-sm text-[var(--fg-muted)] sm:flex-row sm:items-center sm:justify-between">
       <span>&copy; {year} {site.name}. Built with Astro, hosted on GitHub Pages, AI assistant on Cloudflare Workers and NVIDIA NIM.</span>
       <span>All metrics are from delivered engagements. Client names shown with permission.</span>
     </div>

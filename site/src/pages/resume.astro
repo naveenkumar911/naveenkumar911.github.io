@@ -6,7 +6,7 @@ import { skillGroups } from '@/data/skills';
 const top = (id: string, n = 8) => skillGroups.find((g) => g.id === id)!.items.filter((i) => i.depth !== 'working').slice(0, n).map((i) => i.name.split(':')[0].split(' (')[0]);
 ---
 <Base title="Resume | Naveen Kumar" description="Resume of Naveen Kumar, Principal AI Architect and forward-deployed AI engineering leader. Print-ready; Word download available." hideChat>
-  <article class="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-14">
+  <article class="mx-auto max-w-4xl px-5 py-10 sm:px-8 md:py-14">
     <div class="mb-6 flex flex-wrap gap-2 no-print">
       <button class="btn btn-primary !py-2 !px-4 text-sm" onclick="window.print()">Print or save as PDF</button>
       <a class="btn btn-secondary !py-2 !px-4 text-sm" href={site.resumeDocx} download>Download Word (.docx)</a>

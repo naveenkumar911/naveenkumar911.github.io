@@ -13,10 +13,10 @@ import { experience } from '@/data/profile';
         [String(numbers.programs), 'programs owned', `Forward-deployed AI programs from ideation to production, up to ${numbers.concurrentPrograms} running concurrently.`],
         ['Escalation', 'point', 'Senior escalation for delivery risk, technical blockers and customer concerns across all programs.'],
       ].map(([v, l, d]) => (
-        <div class="card p-6">
-          <div class="text-3xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{v}</div>
-          <div class="font-semibold">{l}</div>
-          <p class="mt-2 text-sm text-[var(--fg-muted)]">{d}</p>
+        <div class="card p-7">
+          <div class="stat text-accent-600 dark:text-accent-400">{v}</div>
+          <div class="mt-3 text-lg font-bold">{l}</div>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
         </div>
       ))}
     </div>
@@ -34,9 +34,9 @@ import { experience } from '@/data/profile';
         ['Culture', 'Measure before you claim. Simplicity is a requirement. Prompts are code. Handover is part of the build. Disagree in the review, commit in the sprint. I still ship code weekly so the guardrails stay grounded in reality.'],
         ['Growing leaders', 'Senior engineers run their own programs and present to executives. Engineers who onboarded into the method now lead gates on other programs. The goal is a team that runs the method without me in every room.'],
       ].map(([t, d]) => (
-        <div class="card p-6">
-          <h3 class="font-bold">{t}</h3>
-          <p class="mt-2 text-sm text-[var(--fg-muted)] leading-relaxed">{d}</p>
+        <div class="card p-7">
+          <h3 class="h-card">{t}</h3>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
         </div>
       ))}
     </div>
@@ -47,11 +47,11 @@ import { experience } from '@/data/profile';
       {experience.map((e) => (
         <li class="mb-10">
           <span class="absolute -left-[7px] mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--bg)] bg-accent-500"></span>
-          <div class="text-sm text-[var(--fg-muted)]">{e.period} · {e.location}</div>
-          <h3 class="mt-1 text-xl font-bold">{e.role}</h3>
-          <div class="font-medium text-[var(--fg-muted)]">{e.org}</div>
-          <p class="mt-3 max-w-3xl text-[var(--fg-muted)]">{e.summary}</p>
-          <ul class="mt-3 max-w-3xl space-y-2 text-sm">
+          <div class="text-base text-[var(--fg-muted)]">{e.period} · {e.location}</div>
+          <h3 class="mt-1 text-2xl font-extrabold tracking-tight md:text-3xl">{e.role}</h3>
+          <div class="mt-1 text-lg font-medium text-[var(--fg-muted)]">{e.org}</div>
+          <p class="mt-4 max-w-4xl text-lg text-[var(--fg-muted)]">{e.summary}</p>
+          <ul class="mt-4 max-w-4xl space-y-2.5 text-base">
             {e.highlights.map((h) => (
               <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"></span><span>{h}</span></li>
             ))}

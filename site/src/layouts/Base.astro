@@ -21,7 +21,7 @@ interface Props {
 const { hideChat = false, bodyClass = '', ...seo } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,12 +33,10 @@ const { hideChat = false, bodyClass = '', ...seo } = Astro.props;
     <meta name="author" content={site.name} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script is:inline>
+      // Dark is the default. Only an explicit user choice of light overrides it.
       (function () {
         try {
-          var stored = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var theme = stored || (prefersDark ? 'dark' : 'light');
-          if (theme === 'dark') document.documentElement.classList.add('dark');
+          if (localStorage.getItem('theme') === 'light') document.documentElement.classList.remove('dark');
         } catch (e) {}
       })();
     </script>

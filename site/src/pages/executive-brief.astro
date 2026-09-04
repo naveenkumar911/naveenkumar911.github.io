@@ -3,14 +3,14 @@ import Base from '@/layouts/Base.astro';
 import { site, numbers } from '@/config';
 ---
 <Base title="Executive brief | Naveen Kumar" description="One-page executive brief on Naveen Kumar for CEOs, boards, CAIOs and CTOs: what he has delivered, how he operates, where he creates value, and how to engage.">
-  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
+  <article class="mx-auto max-w-4xl px-5 py-12 sm:px-8 md:py-16">
     <div class="flex items-start justify-between gap-6">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">Executive brief · one page</p>
-        <h1 class="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">Naveen Kumar</h1>
-        <p class="mt-1 text-[var(--fg-muted)]">Principal AI Architect · Forward-deployed AI engineering leader · {site.location}</p>
+        <p class="kicker">Executive brief · one page</p>
+        <h1 class="mt-2 text-4xl font-extrabold tracking-tight md:text-5xl">Naveen Kumar</h1>
+        <p class="mt-2 text-lg text-[var(--fg-muted)]">Principal AI Architect · Forward-deployed AI engineering leader · {site.location}</p>
       </div>
-      <img src="/images/naveen-400.webp" width="96" height="96" alt="" class="hidden h-24 w-24 rounded-2xl object-cover sm:block" />
+      <img src="/images/naveen-400.webp" width="112" height="112" alt="" class="hidden h-28 w-28 rounded-2xl border border-[var(--line)] object-cover sm:block" />
     </div>
 
     <div class="mt-8 flex flex-wrap gap-2 no-print">
@@ -37,8 +37,8 @@ import { site, numbers } from '@/config';
           [String(numbers.programs), `programs, up to ${numbers.concurrentPrograms} concurrent`],
         ].map(([v, l]) => (
           <div class="rounded-xl border border-[var(--line)] p-3">
-            <div class="text-xl font-extrabold tracking-tight">{v}</div>
-            <div class="text-xs text-[var(--fg-muted)] leading-tight">{l}</div>
+            <div class="text-2xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{v}</div>
+            <div class="mt-1 text-sm text-[var(--fg-muted)] leading-tight">{l}</div>
           </div>
         ))}
       </div>

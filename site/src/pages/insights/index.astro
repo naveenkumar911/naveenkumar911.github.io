@@ -18,7 +18,7 @@ const tracks = [
       <button data-track="all" class="chip !bg-accent-500 !text-ink-950 !border-accent-500 cursor-pointer">All ({items.length})</button>
       {tracks.map((t) => <button data-track={t.id} class="chip cursor-pointer">{t.label} ({items.filter((i) => i.data.track === t.id).length})</button>)}
     </div>
-    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="insight-grid">
+    <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3" id="insight-grid">
       {items.map((i) => <div data-track={i.data.track}><InsightCard entry={i} /></div>)}
     </div>
     <div class="mt-10 flex flex-wrap gap-3">

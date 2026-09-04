@@ -7,16 +7,16 @@ interface Props {
   class?: string;
   wide?: boolean;
 }
-const { id, kicker, title, intro, class: cls = '', wide = false } = Astro.props;
+const { id, kicker, title, intro, class: cls = '' } = Astro.props;
 ---
-<section id={id} class={`py-16 md:py-24 ${cls}`}>
-  <div class={`mx-auto px-4 sm:px-6 ${wide ? 'max-w-7xl' : 'max-w-6xl'}`}>
-    <div class="max-w-3xl">
-      {kicker && <p class="text-xs font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400">{kicker}</p>}
-      <h2 class="mt-2 text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
-      {intro && <p class="mt-4 text-lg text-[var(--fg-muted)]">{intro}</p>}
+<section id={id} class={`py-20 md:py-28 ${cls}`}>
+  <div class="page">
+    <div class="max-w-4xl">
+      {kicker && <p class="kicker">{kicker}</p>}
+      <h2 class="h-section mt-3">{title}</h2>
+      {intro && <p class="lead mt-5">{intro}</p>}
     </div>
-    <div class="mt-10">
+    <div class="mt-12">
       <slot />
     </div>
   </div>

@@ -25,51 +25,63 @@ const latest = insights.slice(0, 3);
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-grid"></div>
     <div class="absolute inset-0 -z-10 glow"></div>
-    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-14 sm:px-6 md:grid-cols-[1.35fr_1fr] md:pb-24 md:pt-20">
+    <div class="page grid items-center gap-12 pb-20 pt-16 md:grid-cols-[1.7fr_1fr] md:pb-28 md:pt-24 lg:gap-16">
       <div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="chip"><span class="h-2 w-2 rounded-full bg-accent-500"></span> Open to new roles</span>
-          <span class="chip">Remote US / global</span>
-          <span class="chip">Relocation</span>
-          <span class="chip">UAE onsite</span>
-          <span class="chip">GMT+4, US-East overlap</span>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <a href="#hire-me-as" class="chip chip-accent" title="See the five roles I am hiring-ready for">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-75"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-500"></span>
+            </span>
+            Open to new roles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <a href="/hire#logistics" class="chip">Remote US / global</a>
+          <a href="/hire#logistics" class="chip">Relocation</a>
+          <a href="/hire#logistics" class="chip">UAE onsite</a>
+          <a href="/hire#logistics" class="chip">GMT+4, US-East overlap</a>
         </div>
-        <h1 class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-          Agentic AI from POC to <span class="text-accent-600 dark:text-accent-400">governed production</span>, inside regulated enterprises.
+        <p class="kicker mt-8">Naveen Kumar &middot; Principal AI Architect &middot; Forward-deployed AI leader</p>
+        <h1 class="mt-4 text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]">
+          Agentic AI from POC to <span class="bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent dark:from-accent-300 dark:to-accent-500">governed production</span>, inside regulated enterprises.
         </h1>
-        <p class="mt-6 max-w-2xl text-lg text-[var(--fg-muted)] md:text-xl">
-          I am Naveen Kumar, Principal AI Architect and forward-deployed AI engineering leader. Ten years embedding with government, retail, BFSI, healthcare and technology customers; today leading a 10-person AI team while still shipping the code. My engagements end with numbers on the customer's P&amp;L, not with demos.
+        <p class="lead mt-8 max-w-3xl md:text-[1.375rem]">
+          Ten years embedding with government, retail, BFSI, healthcare and technology customers; today leading a 10-person AI team while still shipping the code. My engagements end with numbers on the customer's P&amp;L, not with demos.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
-          <button class="btn btn-secondary" id="hero-ask">Ask my AI about fit</button>
-          <a class="btn btn-ghost" href="/resume">Resume</a>
+        <div class="mt-10 flex flex-wrap gap-3.5">
+          <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
+          <button class="btn btn-secondary btn-lg" id="hero-ask">Ask my AI about fit</button>
+          <a class="btn btn-ghost btn-lg" href="/resume">Resume</a>
         </div>
-        <p class="mt-4 text-sm text-[var(--fg-muted)]">
-          Prefer a summary for the board? Read the <a class="underline" href="/executive-brief">one-page executive brief</a>.
+        <p class="mt-5 text-base text-[var(--fg-muted)]">
+          Prefer a summary for the board? Read the <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href="/executive-brief">one-page executive brief</a>.
         </p>
       </div>
-      <div class="relative mx-auto w-full max-w-sm md:max-w-none">
-        <div class="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-500/30 to-transparent blur-2xl"></div>
+      <div class="relative mx-auto w-full max-w-[17rem] sm:max-w-xs md:max-w-[22rem] xl:max-w-[24rem]">
+        <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-500/35 via-accent-500/5 to-transparent blur-2xl"></div>
         <picture>
           <source srcset="/images/naveen-800.avif" type="image/avif" />
           <source srcset="/images/naveen-800.webp" type="image/webp" />
-          <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] object-cover shadow-2xl" fetchpriority="high" />
+          <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] border border-[var(--line)] object-cover shadow-2xl" fetchpriority="high" />
         </picture>
-        <div class="card absolute -bottom-5 -left-3 flex items-center gap-3 px-4 py-3 text-sm shadow-lg sm:-left-6">
-          <div class="text-2xl font-extrabold text-accent-600 dark:text-accent-400">10K+</div>
-          <div class="leading-tight text-[var(--fg-muted)]">daily requests on a<br />government platform I built</div>
+        <div class="card absolute -bottom-6 -left-4 flex items-center gap-3 px-4 py-3 shadow-xl sm:-left-8">
+          <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">10K+</div>
+          <div class="text-sm leading-tight text-[var(--fg-muted)]">daily requests on a<br />government platform I built</div>
+        </div>
+        <div class="card absolute -right-4 -top-5 px-4 py-3 shadow-xl sm:-right-8">
+          <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">$600K</div>
+          <div class="text-sm leading-tight text-[var(--fg-muted)]">annual savings, Fortune 500</div>
         </div>
       </div>
     </div>
 
     <!-- Proof bar -->
     <div class="border-y border-[var(--line)] bg-[var(--bg-elev)]/60">
-      <div class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:grid-cols-4 sm:px-6 lg:grid-cols-8">
+      <div class="page grid grid-cols-2 gap-x-6 gap-y-8 py-10 sm:grid-cols-4 lg:grid-cols-8">
         {metrics.map((m) => (
           <a href={m.href} class="group">
-            <div class="text-2xl font-extrabold tracking-tight group-hover:text-accent-600 dark:group-hover:text-accent-400">{m.value}</div>
-            <div class="text-xs text-[var(--fg-muted)] leading-tight">{m.label}</div>
+            <div class="text-3xl font-extrabold tracking-tight group-hover:text-accent-600 dark:group-hover:text-accent-400 xl:text-4xl">{m.value}</div>
+            <div class="mt-1.5 text-sm font-medium leading-tight text-[var(--fg-muted)]">{m.label}</div>
           </a>
         ))}
       </div>
@@ -83,31 +95,31 @@ const latest = insights.slice(0, 3);
 
   <!-- Impact -->
   <Section kicker="Impact" title="Numbers with the story behind them." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {metrics.map((m) => (
-        <a href={m.href} class="card flex flex-col p-6 transition-colors hover:border-accent-500">
-          <div class="text-4xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{m.value}</div>
-          <div class="mt-1 font-semibold">{m.label}</div>
-          <p class="mt-3 text-sm text-[var(--fg-muted)] leading-relaxed">{m.story}</p>
+        <a href={m.href} class="card flex flex-col p-7 transition-colors hover:border-accent-500">
+          <div class="stat text-accent-600 dark:text-accent-400">{m.value}</div>
+          <div class="mt-3 text-lg font-bold">{m.label}</div>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{m.story}</p>
         </a>
       ))}
     </div>
-    <p class="mt-6 text-sm text-[var(--fg-muted)]">Industries: {industries.join(', ')}.</p>
+    <p class="mt-8 text-base text-[var(--fg-muted)]">Industries: {industries.join(', ')}.</p>
   </Section>
 
   <!-- Case studies -->
   <Section kicker="Case studies" title="Production systems, decisions included." intro="Each case study covers context, success criteria, architecture, the decisions as ADRs, what shipped, outcomes, and what I would change.">
-    <div class="grid gap-5 md:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-3">
       {featured.map((c) => <CaseStudyCard entry={c} />)}
     </div>
-    <div class="mt-8">
-      <a class="btn btn-secondary" href="/case-studies">All {caseStudies.length} case studies</a>
+    <div class="mt-10">
+      <a class="btn btn-secondary btn-lg" href="/case-studies">All {caseStudies.length} case studies</a>
     </div>
   </Section>
 
   <!-- How I work -->
   <Section kicker="How I work" title="Six gates from discovery to run." intro="The engagement structure behind every outcome above. Each gate has an artifact, an owner and an exit criterion." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+    <div class="grid gap-5 md:grid-cols-3 xl:grid-cols-6">
       {[
         ['Discovery', 'Baseline, owner, success criterion signed by a sponsor.'],
         ['Scoped slice', 'Highest value, lowest blast radius. Golden set v1.'],
@@ -116,75 +128,75 @@ const latest = insights.slice(0, 3);
         ['Cutover', 'Staged rollout, on-call, baseline improves in production.'],
         ['Run and expand', 'Weekly sampling, monthly review, field-to-product loop.'],
       ].map(([t, d], i) => (
-        <div class="card p-5">
-          <div class="text-xs font-bold text-accent-600 dark:text-accent-400">GATE {i + 1}</div>
-          <div class="mt-1 font-semibold">{t}</div>
-          <p class="mt-2 text-sm text-[var(--fg-muted)]">{d}</p>
+        <div class="card p-6">
+          <div class="text-4xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">0{i + 1}</div>
+          <div class="mt-3 text-lg font-bold">{t}</div>
+          <p class="mt-2 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
         </div>
       ))}
     </div>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a class="btn btn-secondary" href="/architecture/forward-deployed-playbook">Read the playbook</a>
-      <a class="btn btn-ghost" href="/architecture">All architecture and ADRs</a>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn btn-secondary btn-lg" href="/architecture/forward-deployed-playbook">Read the playbook</a>
+      <a class="btn btn-ghost btn-lg" href="/architecture">All architecture and ADRs</a>
     </div>
   </Section>
 
   <!-- Skills snapshot -->
   <Section kicker="Skills" title="Organised by what the market screens for in 2026." intro="Not a tool list. Each group states why it matters to hiring teams now and what I bring at depth.">
-    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {skillGroups.slice(0, 6).map((g) => (
-        <div class="card p-6">
-          <h3 class="font-bold">{g.title}</h3>
-          <p class="mt-2 text-xs text-[var(--fg-muted)]">{g.demand}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
+        <div class="card p-7">
+          <h3 class="h-card">{g.title}</h3>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{g.demand}</p>
+          <div class="mt-5 flex flex-wrap gap-2">
             {g.items.filter((i) => i.depth === 'expert').slice(0, 5).map((i) => <span class="chip">{i.name}</span>)}
           </div>
         </div>
       ))}
     </div>
-    <div class="mt-8"><a class="btn btn-secondary" href="/skills">Full skills matrix</a></div>
+    <div class="mt-10"><a class="btn btn-secondary btn-lg" href="/skills">Full skills matrix</a></div>
   </Section>
 
   <!-- Leadership -->
   <Section kicker="Leadership" title="Built the team, set the bar, owned the outcomes." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-5 md:grid-cols-4">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
         [String(numbers.teamSize), 'person team: AI engineers, data scientists, ML and AIOps'],
         [`${numbers.hired} / ${numbers.onboarded}`, 'hired / onboarded, including partner staff'],
         [String(numbers.programs), `programs owned, up to ${numbers.concurrentPrograms} concurrent`],
         ['Escalation', 'point for delivery risk, blockers and customer concerns'],
       ].map(([v, l]) => (
-        <div class="card p-6">
-          <div class="text-3xl font-extrabold tracking-tight">{v}</div>
-          <p class="mt-2 text-sm text-[var(--fg-muted)]">{l}</p>
+        <div class="card p-7">
+          <div class="stat">{v}</div>
+          <p class="mt-4 text-base leading-relaxed text-[var(--fg-muted)]">{l}</p>
         </div>
       ))}
     </div>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a class="btn btn-secondary" href="/leadership">Leadership and operating model</a>
-      <a class="btn btn-ghost" href="/executive-brief">Executive brief</a>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn btn-secondary btn-lg" href="/leadership">Leadership and operating model</a>
+      <a class="btn btn-ghost btn-lg" href="/executive-brief">Executive brief</a>
     </div>
   </Section>
 
   <!-- Insights -->
   <Section kicker="Insights" title="Writing for the people who decide." intro={`Daily on LinkedIn to ${site.linkedinFollowers} followers; long-form here. Executive strategy, agentic systems in production, platform economics, governance.`}>
-    <div class="grid gap-5 md:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-3">
       {latest.map((i) => <InsightCard entry={i} />)}
     </div>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a class="btn btn-secondary" href="/insights">All {insights.length} articles</a>
-      <a class="btn btn-ghost" href={site.linkedin} target="_blank" rel="noopener">Follow on LinkedIn</a>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn btn-secondary btn-lg" href="/insights">All {insights.length} articles</a>
+      <a class="btn btn-ghost btn-lg" href={site.linkedin} target="_blank" rel="noopener">Follow on LinkedIn</a>
     </div>
   </Section>
 
   <!-- Testimonials -->
   {testimonials.length > 0 && (
     <Section kicker="What people say" title="From the people I have worked with." class="bg-[var(--bg-elev)]/40">
-      <div class="grid gap-5 md:grid-cols-2">
+      <div class="grid gap-6 md:grid-cols-2">
         {testimonials.map(({ entry: t, Content }) => (
-          <figure class="card p-6">
-            <blockquote class="text-[var(--fg)] leading-relaxed"><Content /></blockquote>
-            <figcaption class="mt-4 text-sm text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">{t.data.name}</strong>, {t.data.designation}{t.data.date ? ` (${t.data.date})` : ''}</figcaption>
+          <figure class="card p-8">
+            <blockquote class="text-lg leading-relaxed text-[var(--fg)]"><Content /></blockquote>
+            <figcaption class="mt-5 text-base text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">{t.data.name}</strong>, {t.data.designation}{t.data.date ? ` (${t.data.date})` : ''}</figcaption>
           </figure>
         ))}
       </div>
@@ -192,19 +204,20 @@ const latest = insights.slice(0, 3);
   )}
 
   <!-- CTA -->
-  <section class="py-16 md:py-24">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="card relative overflow-hidden p-8 md:p-12">
+  <section class="py-20 md:py-28">
+    <div class="page">
+      <div class="card relative overflow-hidden p-10 md:p-16">
         <div class="absolute inset-0 -z-10 glow"></div>
-        <div class="grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+        <div class="grid items-center gap-10 md:grid-cols-[1.6fr_1fr]">
           <div>
-            <h2 class="text-3xl font-bold tracking-tight md:text-4xl">If you are hiring for AI leadership or forward-deployed engineering, let us talk this week.</h2>
-            <p class="mt-4 text-[var(--fg-muted)]">Twenty minutes is enough to tell whether there is a fit. I will come prepared with questions about your outcomes, not a pitch.</p>
+            <p class="kicker">Next step</p>
+            <h2 class="h-section mt-3">If you are hiring for AI leadership or forward-deployed engineering, let us talk this week.</h2>
+            <p class="lead mt-5">Twenty minutes is enough to tell whether there is a fit. I will come prepared with questions about your outcomes, not a pitch.</p>
           </div>
           <div class="flex flex-col gap-3">
-            <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
-            <a class="btn btn-secondary" href={`mailto:${site.email}`}>Email {site.email}</a>
-            <a class="btn btn-secondary" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
+            <a class="btn btn-secondary btn-lg" href={`mailto:${site.email}`}>Email {site.email}</a>
+            <a class="btn btn-secondary btn-lg" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>
             <a class="btn btn-ghost" href="/hire">How I engage: full-time, relocation, fractional</a>
           </div>
         </div>

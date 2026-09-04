@@ -21,12 +21,13 @@ const kindLabel: Record<string, string> = {
 };
 ---
 <Base title={`${d.title} | Architecture`} description={d.summary} type="article">
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
+  <div class="page py-12 md:py-16">
     <article>
-      <nav class="text-sm text-[var(--fg-muted)]"><a class="hover:underline" href="/architecture">Architecture</a> / {kindLabel[d.kind]}</nav>
-      <h1 class="mt-4 max-w-4xl text-3xl font-extrabold tracking-tight md:text-5xl">{d.title}</h1>
-      <p class="mt-5 max-w-3xl text-lg text-[var(--fg-muted)]">{d.summary}</p>
-      <p class="mt-3 text-sm"><span class="chip">Status: {d.status}</span></p>
+      <nav class="text-base text-[var(--fg-muted)]"><a class="hover:underline" href="/architecture">Architecture</a> / {kindLabel[d.kind]}</nav>
+      <p class="kicker mt-5">{kindLabel[d.kind]}</p>
+      <h1 class="mt-3 max-w-5xl text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl xl:text-6xl">{d.title}</h1>
+      <p class="lead mt-6 max-w-4xl">{d.summary}</p>
+      <p class="mt-4"><span class="chip">Status: {d.status}</span></p>
       <div class="prose-site prose-breakout mt-10"><Content /></div>
       <div class="mt-12 flex flex-wrap gap-3 no-print">
         <a class="btn btn-primary" href={site.calcom} target="_blank" rel="noopener">Walk through this with me</a>
@@ -34,10 +35,10 @@ const kindLabel: Record<string, string> = {
       </div>
     </article>
     <aside class="mt-16 border-t border-[var(--line)] pt-10">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-[var(--fg-muted)]">More architecture</h2>
-      <ul class="mt-4 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
+      <h2 class="text-3xl font-extrabold tracking-tight">More architecture</h2>
+      <ul class="mt-6 grid gap-4 text-base sm:grid-cols-2 lg:grid-cols-3">
         {others.map((a) => (
-          <li class="card p-4"><a class="font-semibold hover:underline" href={`/architecture/${a.id}`}>{a.data.title}</a><div class="mt-1 text-xs text-[var(--fg-muted)]">{kindLabel[a.data.kind]}</div></li>
+          <li class="card p-6"><a class="text-lg font-bold hover:underline" href={`/architecture/${a.id}`}>{a.data.title}</a><div class="mt-2 text-sm text-[var(--fg-muted)]">{kindLabel[a.data.kind]}</div></li>
         ))}
       </ul>
     </aside>
