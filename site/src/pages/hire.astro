@@ -9,14 +9,13 @@ import { roles } from '@/data/roles';
 
 // Fit criteria: lets recruiters qualify in ten seconds and stops low-band inbound.
 const fit = [
-  { k: 'Level', v: 'Head of AI / VP AI / CAIO-track; Principal or Staff (IC6-IC7 equivalent); Forward Deployed Engineering Lead or Manager; Fractional CAIO.' },
-  { k: 'Titles I answer to', v: 'Head of AI, Head of AI Agents, Head of Applied AI, Director of AI Engineering, Principal AI Architect, Staff AI Platform Engineer, Forward Deployed Engineering Lead, Technical Deployment Lead, Member of Technical Staff (applied).' },
+  { k: 'Proof', v: `${site.experienceYears} years; ${numbers.teamSize}-person team built and led; ${numbers.programs} programs, up to ${numbers.concurrentPrograms} concurrent; $600K/yr savings at a Fortune 500 retailer; 10K+ requests/day government platform at 98% uptime; AI infrastructure cost -30%. Still shipping code weekly.` },
+  { k: 'Level and titles', v: 'Head of AI, VP AI, CAIO-track, Director of AI Engineering; Principal or Staff AI Architect (IC6-IC7 equivalent); Forward Deployed Engineering Lead or Manager; Fractional CAIO.' },
   { k: 'Company types', v: 'Frontier labs and applied-AI scale-ups; Fortune 500 and regulated enterprises; government and sovereign AI entities; PE portfolio companies (fractional).' },
   { k: 'Geography', v: 'Remote for US or global teams (US-East mornings and all of Europe covered from GMT+4); relocation to US, UK, EU or Singapore with employer sponsorship; onsite UAE and GCC.' },
   { k: 'Work authorisation', v: 'Indian national on a UAE residence visa. US requires sponsorship (O-1 or H-1B); UK, EU, Singapore via skilled-worker routes; remote contracts via employer of record are fine.' },
   { k: 'Start', v: 'Immediate joiner. Interview loops can start today; multi-stage processes in one to two weeks.' },
   { k: 'Compensation posture', v: 'Top-of-market for the level and location, stated early so neither side wastes time. Discussed on the first call, not by email.' },
-  { k: 'Scope I bring', v: `${numbers.teamSize}-person team built and led; ${numbers.programs} programs, up to ${numbers.concurrentPrograms} concurrent; platform, governance, evaluation and vendor ownership; still shipping code weekly.` },
 ];
 
 const engagements = [
@@ -84,7 +83,7 @@ const engagements = [
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
               <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
               <a class="btn btn-secondary btn-lg" href={`https://wa.me/${site.whatsapp}?text=Hi%20Naveen%2C%20I%20am%20hiring%20for%20`} target="_blank" rel="noopener">WhatsApp me now</a>
-              <a class="btn btn-secondary" href={`mailto:${site.email}?subject=Role%20discussion`}>Email {site.email}</a>
+              <a class="btn btn-secondary" href={`mailto:${site.email}?subject=Role%20discussion`}>Email me</a>
               <a class="btn btn-secondary" href={site.linkedin} target="_blank" rel="noopener">Message on LinkedIn</a>
             </div>
           </div>

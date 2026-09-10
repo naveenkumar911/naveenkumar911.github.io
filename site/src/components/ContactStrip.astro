@@ -4,18 +4,21 @@
  * without scrolling. Used in the hero, at the top of the Hire page and in the executive brief.
  */
 import { site } from '@/config';
-interface Props { compact?: boolean; class?: string; showBook?: boolean }
-const { compact = false, class: cls = '', showBook = true } = Astro.props;
+interface Props { compact?: boolean; class?: string; showBook?: boolean; badge?: boolean; label?: string }
+const { compact = false, class: cls = '', showBook = true, badge = true, label } = Astro.props;
 const linkedinHandle = site.linkedin.replace(/^https?:\/\/(www\.)?/, '');
 ---
 <div class={`contact-strip ${compact ? 'contact-strip-compact' : ''} ${cls}`}>
-  <span class="chip chip-gold" title="Available to start right away">
-    <span class="relative flex h-2.5 w-2.5">
-      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
-      <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold-500"></span>
+  {label && <span class="text-xs font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">{label}</span>}
+  {badge && (
+    <span class="chip chip-gold" title="Available to start right away">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
+        <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold-500"></span>
+      </span>
+      {site.joinerStatus}
     </span>
-    {site.joinerStatus}
-  </span>
+  )}
   <a class="contact-link" href={`mailto:${site.email}?subject=Role%20discussion`} title="Email">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
     <span>{site.email}</span>
