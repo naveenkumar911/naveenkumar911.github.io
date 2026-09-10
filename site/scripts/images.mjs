@@ -8,7 +8,12 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..');
-const src = path.join(root, 'Naveen profile pic.png');
+// Source photo and the head-and-shoulders crop to take from it (pixels in the source).
+// The current source is a 707x1050 full-length shot; the face sits at roughly x 290-380, y 70-200.
+// A 370px square from (150, 20) frames head with headroom, shoulders, lapels and pocket square,
+// and stays clear of the floral wall on the right edge.
+const src = path.join(root, 'Naveen Kumar profile pic.jpg');
+const crop = { left: 150, top: 20, width: 370, height: 370 };
 const outImages = path.join(here, '..', 'public', 'images');
 const outOg = path.join(here, '..', 'public', 'og');
 
@@ -20,9 +25,18 @@ if (!existsSync(src)) {
 await mkdir(outImages, { recursive: true });
 await mkdir(outOg, { recursive: true });
 
+// Headshot pipeline: crop, resize (upscaling where needed), light sharpen to recover edge
+// definition lost to the small source region.
+const headshot = (size) =>
+  sharp(src)
+    .rotate() // honour EXIF orientation
+    .extract(crop)
+    .resize(size, size, { fit: 'cover', kernel: 'lanczos3' })
+    .sharpen({ sigma: 0.8, m1: 0.6, m2: 0.4 });
+
 const sizes = [180, 400, 800, 1200];
 for (const s of sizes) {
-  const base = sharp(src).resize(s, s, { fit: 'cover', position: 'attention' });
+  const base = headshot(s);
   await base.clone().webp({ quality: 82 }).toFile(path.join(outImages, `naveen-${s}.webp`));
   if (s === 180 || s === 400) await base.clone().png({ compressionLevel: 9 }).toFile(path.join(outImages, `naveen-${s}.png`));
   if (s === 800) await base.clone().avif({ quality: 55 }).toFile(path.join(outImages, `naveen-${s}.avif`));
@@ -59,7 +73,7 @@ async function og({ file, title, subtitle, kicker }) {
   const titleTop = 215;
   const subTop = titleTop + titleLines.length * titleSize * 1.15 + 24;
   const subLines = wrap(subtitle, 52);
-  const photo = await sharp(src).resize(360, 360, { fit: 'cover', position: 'attention' }).png().toBuffer();
+  const photo = await headshot(360).png().toBuffer();
   const svg = `
   <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
