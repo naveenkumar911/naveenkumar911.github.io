@@ -12,7 +12,7 @@ outcomes:
 stack: ["n8n", "OpenAI", "Claude", "WhatsApp Business API", "Zoho CRM", "REST webhooks", "PostgreSQL", "SAP data integration"]
 tracks: ["fractional", "fde", "head-of-ai"]
 featured: false
-order: 5
+order: 6
 verify:
   - "Specific automated processes (supplier confirmations, price-change approvals, CRM enrichment) are consistent with 'supply chain and pricing ops'; confirm names"
 ---

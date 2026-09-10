@@ -8,8 +8,14 @@ Legend: **Confirm** = read and confirm accurate; **Edit** = likely needs your wo
 
 | # | Where | Statement | Action |
 | --- | --- | --- | --- |
-| 1 | Everywhere | "10+ years in AI" and "5+ years forward-deployed" | Confirm (resume says 10+ and 5+) |
-| 2 | Hero, brief, resume | "Ten years embedding with government, retail, BFSI, healthcare and technology customers" | Confirm: BFSI = PIMCO; healthcare = BMS. If you prefer "pharma" over "healthcare", edit `site/src/config.ts` and `index.astro` |
+| 1 | Everywhere | "12+ years in data, ML and AI" (changed from 10+ at your request) and "5+ years forward-deployed" | **Important:** the experience timeline on `/leadership` and `/resume` starts Jan 2017 (CETPA), which is under 10 years. A reference checker who adds up the dates will notice the gap. Either add the 2014-2016 roles, internships or research work to `site/src/data/profile.ts` `experience` so the timeline supports 12+, or revert to 10+ (search for `experienceYears` and `12+`). The wording "in data, ML and AI" is deliberately broader than "in AI" to give room for earlier analytics work |
+| 2 | Hero, brief, resume | "12+ years ... embedded with government, retail, BFSI, healthcare and technology customers" | Confirm: BFSI = PIMCO; healthcare = BMS. If you prefer "pharma" over "healthcare", edit `site/src/config.ts` and `index.astro` |
+| 2a | Everywhere (hero, Hire Naveen, executive brief, PDF, assistant KB) | "Immediate joiner" | Confirm you can in fact start immediately (no notice period at CPC / ADEK). If there is a notice period, change `joinerStatus` in `site/src/config.ts` to e.g. "30-day notice" and edit `worker/knowledge/profile.md` line 18 |
+| 2b | Hire Naveen, fit criteria | Level "IC6-IC7 equivalent", titles list, "top-of-market" compensation posture | Edit to taste; this block is the recruiter qualifier and should reflect exactly what you will and will not consider |
+| 2c | Governance case study (`enterprise-ai-portfolio-governance.md`) | Six departments as business owners; three vendors/partners under governance; monthly Director steering forum; quarterly executive-committee review; "0 residency or audit findings"; two products declined, one adopted | **Confirm every number and cadence.** These are role-consistent expansions of your resume bullets on vendor selection, partner management, governance and roadmaps with Directors. Adjust the `outcomes` and the body before launch; the `verify` list in the frontmatter itemises each claim |
+| 2d | Homepage "Still shipping" (`site/src/data/shipping.ts`) | Dated entries: v1.7 semantic cache (Jul 2026), Arabic golden set tripled (Jun 2026), open repos (May 2026) | Confirm dates and wording; replace with real release notes. Keep this list current monthly; a stale log is worse than none |
+| 2e | Homepage "Customer zero" | "Built the POC in two weeks", "built the first production slice of the platform myself first" | Confirm both statements are exactly true as worded |
+| 2f | Live demos (`/demos`) | Routing prices, quality scores and the eval history are labelled illustrative/synthetic on the page | Nothing to verify; do not present them as production numbers in interviews |
 | 3 | ADEK case study | "thousands of users" | Edit with a defensible order of magnitude, or keep vague |
 | 4 | ADEK case study | Named workflows: policy Q&A, case triage, document intelligence, structured lookups | Confirm or rename to the real workflow names |
 | 5 | ADEK case study | Sovereignty pattern: UAE-region Vertex AI, no cross-border inference, pgvector, self-hosted tracing | Confirm this matches what was actually deployed |
@@ -26,7 +32,7 @@ Legend: **Confirm** = read and confirm accurate; **Edit** = likely needs your wo
 | 16 | Leadership page | Onboarding cadence (week 1 shadow, week 2 own a gate, month 2 own a slice) and "leveling reviewed twice a year, career conversations quarterly" | Edit to your actual practice |
 | 17 | Leadership page | "I run the final technical and judgment interview for every hire" | Confirm |
 | 18 | Hire page | Work authorisation: "Indian national on a UAE residence visa; open to sponsored relocation (O-1/H-1B, UK, EU, Singapore)" | **Confirm nationality and visa status**; edit `site/src/pages/hire.astro` and `worker/knowledge/profile.md` |
-| 19 | Hire page | "Standard notice period", "interviews can start immediately" | Confirm; state the notice length if you want |
+| 19 | Hire page | "Immediate joiner", "interview loops can start today" | See 2a |
 | 20 | Hire page | Fractional: "two to three engagements at a time", "one to two days a week" | Decide |
 | 21 | Config | Cal.com `https://cal.com/naveenkumar911` and Formspree `https://formspree.io/f/mwlkqojy` | Confirm both are live (open them) |
 | 22 | Config | WhatsApp uses +971 562399343 | Confirm you want WhatsApp public |
@@ -79,5 +85,6 @@ Three CFP-ready abstracts are on `/talks`. Suggested first targets given your lo
 
 - Hero headline and tagline: `site/src/config.ts` (`tagline`, `description`) and `site/src/pages/index.astro`.
 - Order of the five role tabs: `site/src/data/roles.ts` (first is default).
-- Which three case studies are featured on the home page: `featured: true` in frontmatter, ordered by `order`.
+- Which four case studies are featured on the home page: `featured: true` in frontmatter, ordered by `order`.
+- Executive brief PDF: edit `site/src/pages/executive-brief.astro`, run `npm run dev` then `npm run pdf` in `site/`, commit the regenerated `site/public/NaveenKumar_Executive_Brief.pdf`.
 - Which articles appear first: `date` in frontmatter.

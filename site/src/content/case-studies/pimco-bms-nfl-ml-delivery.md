@@ -12,7 +12,7 @@ outcomes:
 stack: ["Python", "SQL", "PostgreSQL", "scikit-learn", "PyTorch", "MLflow", "Airflow-style orchestration", "Docker", "CI/CD"]
 tracks: ["fde"]
 featured: false
-order: 6
+order: 7
 verify:
   - "Which of forecasting, fraud detection and analytics mapped to which client; the text below keeps it deliberately general. Add specifics only if you are cleared to share them."
 ---

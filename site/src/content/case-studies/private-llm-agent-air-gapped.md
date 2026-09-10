@@ -12,7 +12,7 @@ outcomes:
 stack: ["Ollama", "Llama", "llama.cpp", "vLLM", "FastAPI", "pgvector / local vector store", "Docker", "quantized models"]
 tracks: ["sovereign", "platform"]
 featured: false
-order: 7
+order: 8
 verify:
   - "Where this was deployed (specific team or environment) if you can share it; the description keeps it general"
 ---

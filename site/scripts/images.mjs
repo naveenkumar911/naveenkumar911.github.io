@@ -43,6 +43,27 @@ for (const s of sizes) {
 }
 console.log('headshot variants written');
 
+// Favicons from the headshot: circular crop with a thin accent ring so it reads at 16-32px.
+const outPublic = path.join(here, '..', 'public');
+async function favicon(size, file) {
+  const ring = Math.max(1, Math.round(size * 0.06));
+  const r = size / 2;
+  const photo = await headshot(size).png().toBuffer();
+  const circular = await sharp(photo)
+    .composite([{ input: Buffer.from(`<svg width="${size}" height="${size}"><circle cx="${r}" cy="${r}" r="${r - ring}" fill="white"/></svg>`), blend: 'dest-in' }])
+    .png()
+    .toBuffer();
+  await sharp(Buffer.from(`<svg width="${size}" height="${size}"><circle cx="${r}" cy="${r}" r="${r}" fill="#22c99f"/></svg>`))
+    .composite([{ input: circular, left: 0, top: 0 }])
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(outPublic, file));
+}
+await favicon(32, 'favicon-32.png');
+await favicon(180, 'apple-touch-icon.png');
+await favicon(192, 'favicon-192.png');
+await favicon(512, 'favicon-512.png');
+console.log('favicons written');
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // Approximate word wrap for SVG <text>: maxChars based on font size and box width.

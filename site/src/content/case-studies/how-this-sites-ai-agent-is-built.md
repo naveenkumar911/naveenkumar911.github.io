@@ -13,7 +13,7 @@ outcomes:
 stack: ["Cloudflare Workers", "NVIDIA NIM (OpenAI-compatible API)", "Llama 3.3 70B", "React island", "Astro", "Server-sent events"]
 tracks: ["platform", "fractional", "fde"]
 featured: false
-order: 8
+order: 9
 verify: []
 ---
 

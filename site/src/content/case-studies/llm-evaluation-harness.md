@@ -13,7 +13,7 @@ outcomes:
 stack: ["Langfuse", "Grafana", "Python", "pytest", "LLM-as-judge", "MLflow", "PostgreSQL", "GitHub Actions"]
 tracks: ["platform", "fde", "sovereign", "head-of-ai"]
 featured: true
-order: 3
+order: 4
 verify:
   - "Golden set sizes (hundreds of items per workflow) and judge calibration figures are typical of the work; confirm or adjust"
 ---

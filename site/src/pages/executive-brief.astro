@@ -1,9 +1,10 @@
 ---
 import Base from '@/layouts/Base.astro';
+import ContactStrip from '@/components/ContactStrip.astro';
 import { site, numbers } from '@/config';
 ---
 <Base title="Executive brief | Naveen Kumar" description="One-page executive brief on Naveen Kumar for CEOs, boards, CAIOs and CTOs: what he has delivered, how he operates, where he creates value, and how to engage.">
-  <article class="mx-auto max-w-4xl px-5 py-12 sm:px-8 md:py-16">
+  <article class="exec-brief mx-auto max-w-4xl px-5 py-12 sm:px-8 md:py-16">
     <div class="flex items-start justify-between gap-6">
       <div>
         <p class="kicker">Executive brief · one page</p>
@@ -13,9 +14,14 @@ import { site, numbers } from '@/config';
       <img src="/images/naveen-400.webp" width="112" height="112" alt="" class="hidden h-28 w-28 rounded-2xl border border-[var(--line)] object-cover sm:block" />
     </div>
 
-    <div class="mt-8 flex flex-wrap gap-2 no-print">
-      <button class="btn btn-secondary !py-2 !px-4 text-sm" onclick="window.print()">Print or save as PDF</button>
-      <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
+    <div class="mt-6">
+      <ContactStrip compact />
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-2 no-print">
+      <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.executiveBriefPdf} download>Download PDF</a>
+      <button class="btn btn-secondary !py-2 !px-4 text-sm" onclick="window.print()">Print</button>
+      <a class="btn btn-secondary !py-2 !px-4 text-sm" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
     </div>
 
     <section class="mt-10">
@@ -67,7 +73,7 @@ import { site, numbers } from '@/config';
 
     <section class="mt-8">
       <h2 class="text-lg font-bold">Logistics</h2>
-      <p class="mt-2 text-[var(--fg-muted)]">Based in the UAE (GMT+4) with US-East and full European overlap. Open to remote (US or global), employer-sponsored relocation, or UAE and GCC onsite. Standard notice period; interviews can start now. References from executive sponsors, business counterparts and direct reports at offer stage.</p>
+      <p class="mt-2 text-[var(--fg-muted)]">Based in the UAE (GMT+4) with US-East and full European overlap. Open to remote (US or global), employer-sponsored relocation, or UAE and GCC onsite. Immediate joiner; interviews can start now. References from executive sponsors, business counterparts and direct reports at offer stage.</p>
     </section>
 
     <section class="mt-8 rounded-2xl border border-[var(--line)] p-5">

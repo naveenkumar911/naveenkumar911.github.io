@@ -1,6 +1,6 @@
 ## Identity and headline facts
 
-Naveen Kumar. Principal AI Architect and forward-deployed AI engineering leader. Based in the UAE (Dubai / Abu Dhabi, GMT+4). 10+ years in AI, data science and ML; 5+ years forward-deployed with enterprise customers. Currently AI Lead Architect and AI Engineering Leader at CPC / ADEK (Abu Dhabi Department of Education and Knowledge) with Watermelon, since April 2025.
+Naveen Kumar. Principal AI Architect and forward-deployed AI engineering leader. Based in the UAE (Dubai / Abu Dhabi, GMT+4). 12+ years in data science, ML and AI; 5+ years forward-deployed with enterprise customers. Currently AI Lead Architect and AI Engineering Leader at CPC / ADEK (Abu Dhabi Department of Education and Knowledge) with Watermelon, since April 2025.
 
 Headline metrics (all from delivered engagements):
 - 10K+ requests per day at 98% uptime on a government agentic AI platform he architected and hands-on built; user engagement +40%; operating cost -30%; latency -40%.
@@ -15,7 +15,7 @@ Contact: email naveenkumar95925@gmail.com; UAE phone and WhatsApp +971 562399343
 
 ## Availability, roles targeted and logistics
 
-Open to: remote roles for US or global teams (works US-East mornings and all of Europe from GMT+4), employer-sponsored relocation (US, UK, EU, Singapore), or onsite in the UAE and GCC. Standard notice period; interview processes can start immediately.
+Open to: remote roles for US or global teams (works US-East mornings and all of Europe from GMT+4), employer-sponsored relocation (US, UK, EU, Singapore), or onsite in the UAE and GCC. Immediate joiner: available to start right away; interview processes can start immediately. Contact: naveenkumar95925@gmail.com, +971 562399343 (WhatsApp), https://www.linkedin.com/in/naveen-kumar-29014b143.
 
 Target roles: Head of AI, Head of AI Agents, VP AI, Chief AI Officer track, Director of Enterprise AI; Forward Deployed Engineering Lead or Manager, Technical Deployment Lead, Applied AI Engineering Lead (frontier labs and applied AI companies); Principal or Staff AI Platform Architect, Staff Engineer Agent Platform, Principal Engineer Evals and Observability; Sovereign and government AI leadership in UAE/GCC; Fractional CAIO, AI advisory, technical due diligence.
 

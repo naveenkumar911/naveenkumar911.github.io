@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "images": "node scripts/images.mjs"
+    "images": "node scripts/images.mjs",
+    "pdf": "node scripts/pdf.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",

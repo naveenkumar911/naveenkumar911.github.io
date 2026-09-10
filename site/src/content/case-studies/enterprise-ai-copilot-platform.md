@@ -12,7 +12,7 @@ outcomes:
 stack: ["React", "TypeScript", "FastAPI", "LangGraph", "PostgreSQL", "Redis", "Azure OpenAI", "Azure AI Search", "Container Apps", "Docker"]
 tracks: ["platform", "head-of-ai", "fde"]
 featured: false
-order: 4
+order: 5
 verify:
   - "Which engagement(s) this platform was deployed in, and any usage numbers you can share"
 ---

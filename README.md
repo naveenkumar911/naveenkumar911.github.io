@@ -20,8 +20,11 @@ cd site
 npm install
 npm run dev          # http://localhost:4321
 npm run build        # outputs site/dist
-npm run images       # regenerate headshot variants + OG images from "../Naveen profile pic.png"
+npm run images       # regenerate headshot variants, favicons + OG images from "../Naveen Kumar profile pic.jpg"
+npm run pdf          # with `npm run dev` running: renders /executive-brief to public/NaveenKumar_Executive_Brief.pdf
 ```
+
+The headshot crop (source pixels) is set at the top of `site/scripts/images.mjs`. Re-run `npm run images` and `npm run pdf` after changing the photo or the executive brief; both outputs are committed.
 
 ```powershell
 cd worker
@@ -92,9 +95,26 @@ The Worker only accepts requests from `https://naveenkumar911.github.io` and `ht
 
 Diagrams are Mermaid fenced blocks (```` ```mermaid ````) rendered client-side.
 
-## Custom domain (optional, later)
+| "Still shipping" log on the homepage | `site/src/data/shipping.ts` (public GitHub repos are pulled live) |
+| Live demos | `site/src/components/demos/*.tsx`, page `site/src/pages/demos.astro` |
+| Fit criteria and contact block (Hire Naveen) | `site/src/pages/hire.astro` (`fit` array), `site/src/components/ContactStrip.astro` |
 
-Buy a domain, add a `CNAME` file in `site/public/` with the domain, set `SITE_URL` env in the workflow, update `site/src/config.ts` `url`, `worker/wrangler.toml` `ALLOWED_ORIGINS`, and `site/public/robots.txt`.
+## Analytics (free, privacy-friendly)
+
+1. Create a free account at https://www.goatcounter.com (no cookies, GDPR-friendly, no consent banner needed). Pick a code, e.g. `naveenkumar`.
+2. Set `PUBLIC_GOATCOUNTER=https://naveenkumar.goatcounter.com/count` in `site/.env` (local) and as a GitHub Actions **Variable** (Settings > Secrets and variables > Actions > Variables) for production. Re-run the Pages workflow.
+3. Dashboard shows visitors, referrers (LinkedIn, Google, direct), pages and countries. Useful for seeing which outreach produced visits to `/hire`.
+
+## Custom domain (recommended, about $10/year)
+
+The only paid item worth it: `naveenkumar911.github.io` reads as a hobby site to some recruiters; `naveenkumar.ai` or similar reads as a brand.
+
+1. Buy the domain (Cloudflare Registrar or Porkbun sell at cost).
+2. DNS: add `A` records for the apex to GitHub Pages IPs `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a `CNAME` for `www` to `naveenkumar911.github.io`.
+3. Create `site/public/CNAME` containing just the domain (e.g. `naveenkumar.ai`). Astro copies it into `dist/`, which is what GitHub Pages reads.
+4. GitHub repo > Settings > Pages > Custom domain: enter the domain, wait for the DNS check, tick **Enforce HTTPS**.
+5. Update `url` in `site/src/config.ts`, `ALLOWED_ORIGINS` in `worker/wrangler.toml` (then `npm run deploy` in `worker/`), and the sitemap line in `site/public/robots.txt`. Push.
+6. The old `github.io` address redirects automatically, so existing LinkedIn links keep working.
 
 ## Security notes
 

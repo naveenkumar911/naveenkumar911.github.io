@@ -2,8 +2,22 @@
 import Base from '@/layouts/Base.astro';
 import Section from '@/components/Section.astro';
 import CalEmbed from '@/components/CalEmbed.astro';
-import { site } from '@/config';
+import ContactForm from '@/components/ContactForm.astro';
+import ContactStrip from '@/components/ContactStrip.astro';
+import { site, numbers } from '@/config';
 import { roles } from '@/data/roles';
+
+// Fit criteria: lets recruiters qualify in ten seconds and stops low-band inbound.
+const fit = [
+  { k: 'Level', v: 'Head of AI / VP AI / CAIO-track; Principal or Staff (IC6-IC7 equivalent); Forward Deployed Engineering Lead or Manager; Fractional CAIO.' },
+  { k: 'Titles I answer to', v: 'Head of AI, Head of AI Agents, Head of Applied AI, Director of AI Engineering, Principal AI Architect, Staff AI Platform Engineer, Forward Deployed Engineering Lead, Technical Deployment Lead, Member of Technical Staff (applied).' },
+  { k: 'Company types', v: 'Frontier labs and applied-AI scale-ups; Fortune 500 and regulated enterprises; government and sovereign AI entities; PE portfolio companies (fractional).' },
+  { k: 'Geography', v: 'Remote for US or global teams (US-East mornings and all of Europe covered from GMT+4); relocation to US, UK, EU or Singapore with employer sponsorship; onsite UAE and GCC.' },
+  { k: 'Work authorisation', v: 'Indian national on a UAE residence visa. US requires sponsorship (O-1 or H-1B); UK, EU, Singapore via skilled-worker routes; remote contracts via employer of record are fine.' },
+  { k: 'Start', v: 'Immediate joiner. Interview loops can start today; multi-stage processes in one to two weeks.' },
+  { k: 'Compensation posture', v: 'Top-of-market for the level and location, stated early so neither side wastes time. Discussed on the first call, not by email.' },
+  { k: 'Scope I bring', v: `${numbers.teamSize}-person team built and led; ${numbers.programs} programs, up to ${numbers.concurrentPrograms} concurrent; platform, governance, evaluation and vendor ownership; still shipping code weekly.` },
+];
 
 const engagements = [
   {
@@ -11,7 +25,7 @@ const engagements = [
     title: 'Full-time leadership or principal role',
     who: 'Frontier labs, AI-native companies, enterprises, government and sovereign AI entities.',
     how: 'Head of AI, Head of AI Agents, VP AI, CAIO-track; Forward Deployed Engineering Lead or Manager; Principal or Staff AI Platform Architect. Remote for US or global teams with US-East overlap from GMT+4, relocation to the US, UK or EU, or onsite in the UAE and GCC.',
-    start: 'Available to start within a standard notice period. Interview process can start immediately.',
+    start: 'Immediate joiner. Interview process can start today.',
   },
   {
     id: 'fractional',
@@ -29,8 +43,57 @@ const engagements = [
   },
 ];
 ---
-<Base title="Hire Naveen Kumar | Head of AI, FDE Lead, Principal Architect, Fractional CAIO" description="How to engage Naveen Kumar: full-time leadership or principal roles (remote, relocation, UAE onsite), fractional CAIO and advisory, technical due diligence. Book a 20-minute call." image="/og/hire.png">
-  <Section kicker="Hire" title="Three ways to engage. One conversation to start." intro="Twenty minutes is enough to tell whether there is a fit. I come prepared with questions about your outcomes and constraints, not a pitch.">
+<Base title="Hire Naveen Kumar | Immediate joiner: Head of AI, FDE Lead, Principal Architect, Fractional CAIO" description="Immediate joiner. How to engage Naveen Kumar: full-time leadership or principal roles (remote, relocation, UAE onsite), fractional CAIO and advisory, technical due diligence. Email, WhatsApp, LinkedIn or book a 20-minute call." image="/og/hire.png">
+  <!-- Contact first: recruiters should never have to scroll for a phone number. -->
+  <section id="contact" class="relative overflow-hidden py-16 md:py-20">
+    <div class="absolute inset-0 -z-10 glow"></div>
+    <div class="page">
+      <div class="max-w-4xl">
+        <p class="kicker">Hire Naveen</p>
+        <h1 class="h-section mt-3">Immediate joiner. Reach me directly, today.</h1>
+        <p class="lead mt-5">Every direct route is below. Email or WhatsApp gets a reply within one business day (GMT+4); a booked call gets twenty minutes with no slides. I come prepared with questions about your outcomes, not a pitch.</p>
+      </div>
+
+      <div class="card mt-8 px-6 py-5 md:px-8">
+        <ContactStrip />
+      </div>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+        <div class="card p-7 md:p-8">
+          <h2 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">Fit criteria at a glance</h2>
+          <dl class="mt-5 divide-y divide-[var(--line)]">
+            {fit.map((f) => (
+              <div class="grid gap-1 py-3.5 sm:grid-cols-[11rem_1fr] sm:gap-4">
+                <dt class="font-bold">{f.k}</dt>
+                <dd class="text-base leading-relaxed text-[var(--fg-muted)]">{f.v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a class="btn btn-secondary" href="/resume">Resume</a>
+            <a class="btn btn-secondary" href={site.executiveBriefPdf} download>Executive brief (PDF)</a>
+            <a class="btn btn-ghost" href="/#hire-me-as">Evidence by role</a>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">Or send the role details now</h2>
+          <ContactForm />
+          <div class="card mt-6 p-6">
+            <h3 class="h-card">Prefer to talk?</h3>
+            <p class="mt-2 text-base text-[var(--fg-muted)]">Twenty minutes on video, no slides. I will come with questions about your outcomes, timeline and constraints.</p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
+              <a class="btn btn-secondary btn-lg" href={`https://wa.me/${site.whatsapp}?text=Hi%20Naveen%2C%20I%20am%20hiring%20for%20`} target="_blank" rel="noopener">WhatsApp me now</a>
+              <a class="btn btn-secondary" href={`mailto:${site.email}?subject=Role%20discussion`}>Email {site.email}</a>
+              <a class="btn btn-secondary" href={site.linkedin} target="_blank" rel="noopener">Message on LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Section kicker="Engagement" title="Three ways to engage. One conversation to start." intro="Full-time, fractional, or a scoped review. Pick the shape; the first call is the same." class="bg-[var(--bg-elev)]/40">
     <div class="grid gap-5 md:grid-cols-3">
       {engagements.map((e) => (
         <div id={e.id} class="card flex flex-col p-7">
@@ -44,7 +107,7 @@ const engagements = [
     </div>
   </Section>
 
-  <Section kicker="By role" title="What I would do in the first 90 days." class="bg-[var(--bg-elev)]/40">
+  <Section kicker="By role" title="What I would do in the first 90 days.">
     <div class="space-y-5">
       {roles.map((r) => (
         <details id={r.id} class="card group p-7" open={r.id === 'fde'}>
@@ -93,12 +156,12 @@ const engagements = [
     </div>
   </Section>
 
-  <Section id="logistics" kicker="Logistics" title="The practical details.">
+  <Section id="logistics" kicker="Logistics" title="The practical details." class="bg-[var(--bg-elev)]/40">
     <div class="grid gap-5 md:grid-cols-3">
       {[
-        ['Location and time zone', `Based in ${site.location}. Working hours flex to overlap US-East mornings and all of Europe. Frequent travel is fine; I have spent most of ten years embedded at customer sites.`],
+        ['Location and time zone', `Based in ${site.location}. Working hours flex to overlap US-East mornings and all of Europe. Frequent travel is fine; I have spent most of twelve years embedded at customer sites.`],
         ['Work authorisation', 'Indian national on a UAE residence visa. Open to employer-sponsored relocation to the US (O-1 or H-1B routes), UK, EU or Singapore, and to remote contracts through an employer of record.'],
-        ['Notice and start', 'Standard notice period at current employer. Interview processes can start immediately; I can accommodate multi-stage loops within one to two weeks.'],
+        ['Notice and start', 'Immediate joiner: I can start right away. Interview processes can start today; I can accommodate multi-stage loops within one to two weeks.'],
         ['References', 'Available on request at offer stage from executive sponsors, business counterparts and direct reports.'],
         ['Compensation', 'Discussed on the call, with the role and location. I am targeting the top of the market for the roles listed here and am transparent about it early so neither side wastes time.'],
         ['What I need from you', 'A named outcome you want in 12 months, the constraints (residency, regulators, budget), and who owns the result today. I will tell you honestly whether I am the right person.'],
@@ -111,12 +174,10 @@ const engagements = [
     </div>
   </Section>
 
-  <Section id="book" kicker="Book" title="Pick a time." intro="Twenty minutes, video, no slides. If Cal.com does not load, email or WhatsApp me and I will send times." class="bg-[var(--bg-elev)]/40">
+  <Section id="book" kicker="Book" title="Pick a time." intro="Twenty minutes, video, no slides. If Cal.com does not load, email or WhatsApp me and I will send times.">
     <CalEmbed />
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a class="btn btn-secondary" href={`mailto:${site.email}?subject=Intro%20call`}>Email {site.email}</a>
-      <a class="btn btn-secondary" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp {site.phoneUAE}</a>
-      <a class="btn btn-ghost" href="/contact">Contact form</a>
+    <div class="card mt-8 px-6 py-5">
+      <ContactStrip showBook={false} />
     </div>
   </Section>
 </Base>

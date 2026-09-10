@@ -5,10 +5,13 @@ import Section from '@/components/Section.astro';
 import RoleSwitcher from '@/components/RoleSwitcher';
 import CaseStudyCard from '@/components/CaseStudyCard.astro';
 import InsightCard from '@/components/InsightCard.astro';
+import ContactStrip from '@/components/ContactStrip.astro';
+import StillShipping from '@/components/StillShipping.tsx';
 import { site, numbers } from '@/config';
 import { roles } from '@/data/roles';
 import { metrics, industries } from '@/data/profile';
 import { skillGroups } from '@/data/skills';
+import { shipping } from '@/data/shipping';
 
 const caseStudies = (await getCollection('caseStudies')).sort((a, b) => a.data.order - b.data.order);
 const insights = (await getCollection('insights')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -17,7 +20,7 @@ const testimonials = await Promise.all(approved.map(async (t) => ({ entry: t, Co
 
 const csMeta = Object.fromEntries(caseStudies.map((c) => [c.id, { slug: c.id, title: c.data.title, summary: c.data.summary, outcomes: c.data.outcomes }]));
 const inMeta = Object.fromEntries(insights.map((i) => [i.id, { slug: i.id, title: i.data.title, description: i.data.description }]));
-const featured = caseStudies.filter((c) => c.data.featured).slice(0, 3);
+const featured = caseStudies.filter((c) => c.data.featured).slice(0, 4);
 const latest = insights.slice(0, 3);
 ---
 <Base type="profile">
@@ -25,14 +28,17 @@ const latest = insights.slice(0, 3);
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-grid"></div>
     <div class="absolute inset-0 -z-10 glow"></div>
-    <div class="page grid items-center gap-12 pb-20 pt-16 md:grid-cols-[1.7fr_1fr] md:pb-28 md:pt-24 lg:gap-16">
+    <div class="page grid items-start gap-12 pb-20 pt-10 md:grid-cols-[1.7fr_1fr] md:pb-24 md:pt-12 lg:gap-16">
       <div>
         <div class="flex flex-wrap items-center gap-2.5">
-          <a href="#hire-me-as" class="chip chip-accent" title="See the five roles I am hiring-ready for">
+          <a href="/hire#contact" class="chip chip-gold" title="Available to start right away">
             <span class="relative flex h-2.5 w-2.5">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-75"></span>
-              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-500"></span>
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold-500"></span>
             </span>
+            {site.joinerStatus}
+          </a>
+          <a href="#hire-me-as" class="chip chip-accent" title="See the five roles I am hiring-ready for">
             Open to new roles
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </a>
@@ -46,7 +52,7 @@ const latest = insights.slice(0, 3);
           Agentic AI from POC to <span class="bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent dark:from-accent-300 dark:to-accent-500">governed production</span>, inside regulated enterprises.
         </h1>
         <p class="lead mt-8 max-w-3xl md:text-[1.375rem]">
-          Ten years embedding with government, retail, BFSI, healthcare and technology customers; today leading a 10-person AI team while still shipping the code. My engagements end with numbers on the customer's P&amp;L, not with demos.
+          {site.experienceYears} years in data, ML and AI, embedded with government, retail, BFSI, healthcare and technology customers; today leading a 10-person AI team while still shipping the code. My engagements end with numbers on the customer's P&amp;L, not with demos.
         </p>
         <div class="mt-10 flex flex-wrap gap-3.5">
           <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
@@ -54,24 +60,30 @@ const latest = insights.slice(0, 3);
           <a class="btn btn-ghost btn-lg" href="/resume">Resume</a>
         </div>
         <p class="mt-5 text-base text-[var(--fg-muted)]">
-          Prefer a summary for the board? Read the <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href="/executive-brief">one-page executive brief</a>.
+          Prefer a summary for the board? Read the <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href="/executive-brief">one-page executive brief</a> or <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href={site.executiveBriefPdf} download>download it as PDF</a>.
         </p>
       </div>
-      <div class="relative mx-auto w-full max-w-[17rem] sm:max-w-xs md:max-w-[22rem] xl:max-w-[24rem]">
-        <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-500/35 via-accent-500/5 to-transparent blur-2xl"></div>
-        <picture>
-          <source srcset="/images/naveen-800.avif" type="image/avif" />
-          <source srcset="/images/naveen-800.webp" type="image/webp" />
-          <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] border border-[var(--line)] object-cover shadow-2xl" fetchpriority="high" />
-        </picture>
-        <div class="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-ink-950/55 via-transparent to-transparent dark:from-ink-950/70" aria-hidden="true"></div>
-        <div class="card absolute -bottom-6 -left-4 flex items-center gap-3 px-4 py-3 shadow-xl sm:-left-8">
-          <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">10K+</div>
-          <div class="text-sm leading-tight text-[var(--fg-muted)]">daily requests on a<br />government platform I built</div>
+      <div class="mx-auto w-full max-w-[17rem] sm:max-w-xs md:mt-2 md:max-w-[22rem] xl:max-w-[24rem]">
+        <div class="relative">
+          <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-500/35 via-accent-500/5 to-transparent blur-2xl"></div>
+          <picture>
+            <source srcset="/images/naveen-800.avif" type="image/avif" />
+            <source srcset="/images/naveen-800.webp" type="image/webp" />
+            <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] border border-[var(--line)] object-cover shadow-2xl" fetchpriority="high" />
+          </picture>
+          <div class="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-ink-950/55 via-transparent to-transparent dark:from-ink-950/70" aria-hidden="true"></div>
+          <div class="card absolute -bottom-6 -left-4 flex items-center gap-3 px-4 py-3 shadow-xl sm:-left-8">
+            <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">10K+</div>
+            <div class="text-sm leading-tight text-[var(--fg-muted)]">daily requests on a<br />government platform I built</div>
+          </div>
+          <div class="card absolute -right-4 -top-5 px-4 py-3 shadow-xl sm:-right-8">
+            <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">$600K</div>
+            <div class="text-sm leading-tight text-[var(--fg-muted)]">annual savings, Fortune 500</div>
+          </div>
         </div>
-        <div class="card absolute -right-4 -top-5 px-4 py-3 shadow-xl sm:-right-8">
-          <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">$600K</div>
-          <div class="text-sm leading-tight text-[var(--fg-muted)]">annual savings, Fortune 500</div>
+        <!-- Direct contact, next to the face, above the fold. -->
+        <div class="card mt-12 px-5 py-4">
+          <ContactStrip compact class="!flex-col !items-start" />
         </div>
       </div>
     </div>
@@ -110,7 +122,7 @@ const latest = insights.slice(0, 3);
 
   <!-- Case studies -->
   <Section kicker="Case studies" title="Production systems, decisions included." intro="Each case study covers context, success criteria, architecture, the decisions as ADRs, what shipped, outcomes, and what I would change.">
-    <div class="grid gap-6 md:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       {featured.map((c) => <CaseStudyCard entry={c} />)}
     </div>
     <div class="mt-10">
@@ -140,6 +152,28 @@ const latest = insights.slice(0, 3);
       <a class="btn btn-secondary btn-lg" href="/architecture/forward-deployed-playbook">Read the playbook</a>
       <a class="btn btn-ghost btn-lg" href="/architecture">All architecture and ADRs</a>
     </div>
+  </Section>
+
+  <!-- Customer zero: for founders and CTOs who need 0-to-1, not just scale -->
+  <Section kicker="Customer zero" title="I have sold, scoped and shipped the first deployment myself. Three times." intro="Founders and CTOs ask a different question from enterprises: can you do the zero-to-one, in front of the customer, before there is a team? Yes, and here is where.">
+    <div class="grid gap-6 md:grid-cols-3">
+      {[
+        ['Fortune 500 retailer, 2022', 'Ran the discovery workshops, picked the first slice, built the POC in two weeks, then hardened it with the client engineers so they could own it. That slice grew into the $600K per year program.', '/case-studies/circle-k-agentic-rag', 'Read the case study'],
+        ['Government entity, 2025', 'Joined with a mandate to set direction and build a team. Built the first production slice of the agentic platform myself first, so the guardrails were grounded in a real system, then hired eight and onboarded twelve into it.', '/case-studies/adek-agentic-platform', 'Read the case study'],
+        ['This site, 2026', 'Everything here, including the grounded assistant, the Worker, the eval and routing demos and the deploy pipeline, was built hands-on in days on free infrastructure. The evidence of craft is one click away.', '/demos', 'Open the live demos'],
+      ].map(([t, d, href, cta]) => (
+        <div class="card flex flex-col p-7">
+          <h3 class="h-card">{t}</h3>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
+          <a class="btn btn-secondary mt-6 self-start" href={href}>{cta}</a>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Still shipping -->
+  <Section kicker="Still shipping" title="Recent work, with dates." intro="Leadership did not stop the commits. A curated log of what I personally shipped recently, and my public GitHub pulled live." class="bg-[var(--bg-elev)]/40">
+    <StillShipping client:visible items={shipping} githubUser={site.github.split('/').pop()!} githubUrl={site.github} />
   </Section>
 
   <!-- Skills snapshot -->

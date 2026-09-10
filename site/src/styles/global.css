@@ -125,6 +125,38 @@ a.chip:hover { border-color: var(--color-accent-500); color: var(--fg); }
   color: var(--fg);
   font-weight: 600;
 }
+.chip-gold {
+  border-color: color-mix(in oklab, var(--color-gold-500) 65%, transparent);
+  background: color-mix(in oklab, var(--color-gold-500) 16%, var(--bg-elev));
+  color: var(--fg);
+  font-weight: 700;
+}
+
+/* Immediate-joiner contact strip */
+.contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem 1rem;
+  font-size: 1rem;
+}
+.contact-strip-compact { font-size: 0.9375rem; gap: 0.5rem 0.875rem; }
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--fg);
+  border-bottom: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
+  padding-bottom: 1px;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+.contact-link svg { color: var(--color-accent-600); flex-shrink: 0; }
+.dark .contact-link svg { color: var(--color-accent-400); }
+.contact-link:hover { border-color: var(--color-accent-500); color: var(--color-accent-600); }
+.dark .contact-link:hover { color: var(--color-accent-400); }
+.contact-link-accent { color: var(--color-accent-600); border-color: color-mix(in oklab, var(--color-accent-500) 50%, transparent); }
+.dark .contact-link-accent { color: var(--color-accent-400); }
 
 .kicker {
   font-size: 0.875rem;
@@ -244,10 +276,41 @@ a.chip:hover { border-color: var(--color-accent-500); color: var(--fg); }
 }
 
 @media print {
-  .no-print { display: none !important; }
-  body { background: white; color: black; }
-  a { color: black; text-decoration: none; }
+  /* Force the light palette regardless of the on-screen theme so PDFs print cleanly. */
+  html, html.dark {
+    color-scheme: light;
+    --bg: #ffffff;
+    --bg-elev: #ffffff;
+    --fg: #10162a;
+    --fg-muted: #444f72;
+    --line: #cfd5e6;
+    font-size: 12.5px;
+  }
+  .no-print, header, footer, #chat-launcher, .chat-launcher { display: none !important; }
+  body { background: white !important; color: #10162a; }
+  .dark body { background: white !important; }
+  a { color: inherit; text-decoration: none; }
+  .card { box-shadow: none !important; background: white !important; }
+  .kicker { color: #128066 !important; }
+  .contact-link svg { color: #128066 !important; }
+  .chip-gold { background: #fff6dd !important; }
   .print-break { break-before: page; }
+  @page { size: A4; margin: 10mm 12mm; }
+
+  /* Executive brief: fit on one A4 page. */
+  .exec-brief { padding: 0 !important; max-width: none !important; font-size: 11px; line-height: 1.4; }
+  .exec-brief section { margin-top: 0.7rem !important; }
+  .exec-brief section > h2 { font-size: 12.5px; margin-bottom: 0.15rem; }
+  .exec-brief h1 { font-size: 26px !important; }
+  .exec-brief p, .exec-brief li { font-size: 11px; line-height: 1.4; }
+  .exec-brief .mt-2 { margin-top: 0.2rem !important; }
+  .exec-brief .mt-3 { margin-top: 0.3rem !important; }
+  .exec-brief .mt-6, .exec-brief .mt-8, .exec-brief .mt-10 { margin-top: 0.6rem !important; }
+  .exec-brief .space-y-2 > * + * { margin-top: 0.25rem !important; }
+  .exec-brief .grid { gap: 0.4rem !important; }
+  .exec-brief .rounded-xl, .exec-brief .rounded-2xl { padding: 0.45rem 0.6rem !important; }
+  .exec-brief .text-2xl { font-size: 15px !important; }
+  .exec-brief img { width: 64px !important; height: 64px !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

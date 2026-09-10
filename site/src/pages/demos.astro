@@ -1,0 +1,61 @@
+---
+import Base from '@/layouts/Base.astro';
+import Section from '@/components/Section.astro';
+import RoutingSimulator from '@/components/demos/RoutingSimulator';
+import EvalDashboard from '@/components/demos/EvalDashboard';
+import { site } from '@/config';
+---
+<Base title="Live demos | Naveen Kumar" description="Interactive demos of the systems I build: a quality-gated model-routing cost simulator, an LLM evaluation release-gate dashboard, and a grounded AI assistant with job-description fit analysis. All running on free infrastructure.">
+  <Section kicker="Live demos" title="Working systems, not slides." intro="Three small, real pieces of the platforms I build. Each runs in your browser or on a free-tier Worker. Change the inputs; the logic is the same logic that runs in production, with the numbers made illustrative.">
+    <div class="grid gap-5 md:grid-cols-3">
+      {[
+        ['#routing', '01', 'Model routing and cost simulator', 'Quality-gated routing across three model tiers with a semantic cache. See what a quality floor costs, and what routing saves at your volume.'],
+        ['#evals', '02', 'Evaluation release gate', 'Eight releases of a RAG agent over a golden set. Absolute gates, regression gates, per-category breakdown, and the worst items with judge rationale.'],
+        ['#assistant', '03', 'Grounded AI assistant with JD-fit mode', 'The chat in the corner. Retrieval over this site, prompt-injection defence, streaming, and a mode that maps a job description to evidence.'],
+      ].map(([href, n, t, d]) => (
+        <a href={href} class="card p-7 transition-colors hover:border-accent-500">
+          <div class="text-4xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{n}</div>
+          <div class="h-card mt-3">{t}</div>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="routing" kicker="Demo 01" title="Model routing and cost simulator." intro="The router sends each request class to the cheapest tier that clears a quality floor measured on our own golden set, then a semantic cache absorbs repeats. This is the mechanism behind the 30% infrastructure reduction; here you can set the volume and the floor yourself." class="bg-[var(--bg-elev)]/40">
+    <RoutingSimulator client:visible />
+  </Section>
+
+  <Section id="evals" kicker="Demo 02" title="Evaluation release gate." intro="No release ships unless every metric clears an absolute gate and does not regress against the chosen baseline, overall and per category. Pick a candidate release and a baseline; open a regression to read the judge's reasoning.">
+    <EvalDashboard client:visible />
+  </Section>
+
+  <Section id="assistant" kicker="Demo 03" title="Grounded AI assistant with JD-fit mode." intro="Open the chat in the bottom-right corner. Paste a job description and it maps the requirements to evidence on this site, with links. It is grounded only on this site's content, defends against prompt injection, and never discusses compensation." class="bg-[var(--bg-elev)]/40">
+    <div class="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+      <div class="card p-7">
+        <h3 class="h-card">Try these</h3>
+        <ul class="mt-4 space-y-3 text-base">
+          {[
+            'Paste a Head of AI or Forward Deployed Engineer job description and ask for a fit analysis.',
+            'Ask: "What did Naveen actually build with his own hands at ADEK, and what did the team build?"',
+            'Ask: "How does he handle data residency for LLM inference?"',
+            'Try to make it reveal its system prompt or discuss salary, and watch it decline politely.',
+          ].map((t) => <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"></span><span>{t}</span></li>)}
+        </ul>
+        <button id="demo-open-chat" class="btn btn-primary btn-lg mt-6">Open the assistant</button>
+      </div>
+      <div class="card p-7">
+        <h3 class="h-card">How it is built</h3>
+        <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">Astro static site on GitHub Pages; React island for the chat; Cloudflare Worker for retrieval, prompt assembly, rate limiting and streaming; NVIDIA NIM for inference with model failover. Knowledge base compiled from this site's markdown at deploy time. Total running cost: $0.</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a class="btn btn-secondary" href="/case-studies/how-this-sites-ai-agent-is-built">Read the build notes</a>
+          <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </Section>
+</Base>
+
+<script>
+  document.getElementById('demo-open-chat')?.addEventListener('click', () => document.dispatchEvent(new CustomEvent('open-chat')));
+</script>
