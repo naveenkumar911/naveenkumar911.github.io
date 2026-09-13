@@ -2,10 +2,8 @@
 
 Static portfolio (Astro + Tailwind + React islands) on GitHub Pages, with a governed "Ask Naveen's AI" assistant on Cloudflare Workers backed by NVIDIA NIM. Total running cost: $0.
 
-- Live site: https://naveenkumar911.github.io (after step 2 below)
-- Plan and rationale: [PORTFOLIO_PLAN.md](PORTFOLIO_PLAN.md)
-- Items to verify before launch: [CONTENT_REVIEW.md](CONTENT_REVIEW.md)
-- Launch and outreach checklist: [LAUNCH_CHECKLIST.md](LAUNCH_CHECKLIST.md)
+- Live site: https://naveenkumar911.github.io (after `DEPLOY.md`)
+- Go live: [DEPLOY.md](DEPLOY.md)
 
 ```
 site/      Astro site (pages, content collections, components, images)
@@ -88,7 +86,7 @@ The Worker only accepts requests from `https://naveenkumar911.github.io` and `ht
 | Case studies | `site/src/content/case-studies/*.md` |
 | Architecture / ADRs | `site/src/content/architecture/*.md` |
 | Insights articles | `site/src/content/insights/*.md` |
-| Testimonials | `site/src/content/testimonials/*.md` (set `approved: true` only after the person agrees) |
+| Testimonials | `site/src/content/testimonials/*.md` (publish only after the person agrees; drafts stay local / gitignored) |
 | Talks, certifications | `site/src/pages/talks.astro`, `site/src/pages/credentials.astro` |
 | Assistant knowledge | `worker/knowledge/profile.md` (+ site content, compiled by `npm run kb`) then `npm run deploy` in `worker/` |
 | Resume (Word) | replace `site/public/NaveenKumar_Resume.docx` |

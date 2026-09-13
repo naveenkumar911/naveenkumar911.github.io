@@ -6,6 +6,14 @@
 .dev.vars
 .wrangler/
 
+# source photos and working resume (public copies live under site/public/)
+Naveen*.jpg
+Naveen*.png
+NaveenKumar_Resume72.docx
+
+# unapproved testimonial drafts (approved ones are named without the draft- prefix)
+site/src/content/testimonials/draft-*.md
+
 # dependencies and build output
 node_modules/
 dist/
