@@ -6,12 +6,11 @@ import RoleSwitcher from '@/components/RoleSwitcher';
 import CaseStudyCard from '@/components/CaseStudyCard.astro';
 import InsightCard from '@/components/InsightCard.astro';
 import ContactStrip from '@/components/ContactStrip.astro';
-import StillShipping from '@/components/StillShipping.tsx';
+import ExperienceSnapshot from '@/components/ExperienceSnapshot.astro';
 import { site, numbers } from '@/config';
 import { roles } from '@/data/roles';
-import { metrics, industries } from '@/data/profile';
+import { industries } from '@/data/profile';
 import { skillGroups } from '@/data/skills';
-import { shipping } from '@/data/shipping';
 
 const caseStudies = (await getCollection('caseStudies')).sort((a, b) => a.data.order - b.data.order);
 const insights = (await getCollection('insights')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -20,17 +19,47 @@ const testimonials = await Promise.all(approved.map(async (t) => ({ entry: t, Co
 
 const csMeta = Object.fromEntries(caseStudies.map((c) => [c.id, { slug: c.id, title: c.data.title, summary: c.data.summary, outcomes: c.data.outcomes }]));
 const inMeta = Object.fromEntries(insights.map((i) => [i.id, { slug: i.id, title: i.data.title, description: i.data.description }]));
-const featured = caseStudies.filter((c) => c.data.featured).slice(0, 4);
+const featured = caseStudies.filter((c) => c.data.featured).slice(0, 3);
 const latest = insights.slice(0, 3);
+
+const proof = [
+  { value: '$2M', label: 'per year saved, Fortune 500 retailer', href: '/case-studies/circle-k-agentic-rag' },
+  { value: '10K+', label: 'requests a day, government AI platform', href: '/case-studies/adek-agentic-platform' },
+  { value: '98%', label: 'uptime in data-sovereign production', href: '/case-studies/adek-agentic-platform' },
+  { value: '30-40%', label: 'accuracy gain from evals and guardrails', href: '/case-studies/llm-evaluation-harness' },
+  { value: String(numbers.teamSize), label: `person AI team led, ${numbers.programs} programs`, href: '/leadership' },
+];
+
+const gates = [
+  ['Discovery', 'Baseline, owner, success criterion signed by a sponsor.'],
+  ['Scoped slice', 'Highest value, lowest blast radius. Golden set v1.'],
+  ['Working POC', 'Real data. Metric moves. Failure modes listed.'],
+  ['Production ready', 'Security, residency, evals gate, SLOs, runbooks, cost model.'],
+  ['Cutover', 'Staged rollout, on-call, baseline improves in production.'],
+  ['Run and expand', 'Weekly sampling, monthly review, field-to-product loop.'],
+];
 ---
 <Base type="profile">
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-grid"></div>
     <div class="absolute inset-0 -z-10 glow"></div>
-    <div class="page grid items-start gap-12 pb-20 pt-10 md:grid-cols-[1.7fr_1fr] md:pb-24 md:pt-12 lg:gap-16">
+    <div class="page grid items-center gap-10 pb-10 pt-6 sm:pt-8 md:grid-cols-[1.7fr_1fr] md:pb-16 md:pt-12 lg:gap-12 lg:pb-20 xl:gap-16">
       <div>
-        <div class="flex flex-wrap items-center gap-2.5">
+        <!-- Phone identity row: face and name before anything else. -->
+        <div class="flex items-center gap-4 md:hidden">
+          <picture class="shrink-0">
+            <source srcset="/images/naveen-800.avif" type="image/avif" />
+            <img src="/images/naveen-800.webp" width="160" height="160" alt="Naveen Kumar" class="h-20 w-20 rounded-full border-2 border-accent-500/70 object-cover shadow-lg" fetchpriority="high" />
+          </picture>
+          <div class="min-w-0">
+            <p class="text-xl font-extrabold leading-tight tracking-tight">{site.name}</p>
+            <p class="mt-0.5 text-sm font-semibold text-accent-600 dark:text-accent-400">Principal AI Architect &middot; AI Engineering Leader</p>
+            <p class="mt-0.5 text-sm text-[var(--fg-muted)]">Abu Dhabi, UAE &middot; GMT+4</p>
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-wrap items-center gap-2 md:mt-0 md:gap-2.5">
           <a href="/hire#contact" class="chip chip-gold" title="Available to start right away">
             <span class="relative flex h-2.5 w-2.5">
               <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
@@ -38,186 +67,142 @@ const latest = insights.slice(0, 3);
             </span>
             {site.joinerStatus}
           </a>
-          <a href="#hire-me-as" class="chip chip-accent" title="See the five roles I am hiring-ready for">
-            Open to new roles
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </a>
-          <a href="/hire#logistics" class="chip" title="Based in the UAE, GMT+4; US-East mornings and all of Europe covered">Remote US / global (GMT+4)</a>
-          <a href="/hire#logistics" class="chip">Relocation</a>
-          <a href="/hire#logistics" class="chip">UAE onsite</a>
+          <a href="/hire#logistics" class="chip chip-accent">Remote &middot; Relocation &middot; UAE onsite</a>
         </div>
-        <p class="kicker mt-8">Naveen Kumar &middot; Principal AI Architect &middot; Forward-deployed AI leader</p>
-        <h1 class="mt-4 text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]">
+
+        <p class="kicker mt-7 hidden lg:block">Naveen Kumar &middot; Principal AI Architect &middot; AI Engineering Leader</p>
+        <h1 class="mt-5 text-[2.05rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-5xl md:mt-6 md:text-[2.6rem] lg:mt-4 lg:text-[3.5rem] xl:text-[4.25rem]">
           Agentic AI from POC to <span class="bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent dark:from-accent-300 dark:to-accent-500">governed production</span>, inside regulated enterprises.
         </h1>
-        <p class="lead mt-8 max-w-3xl md:text-[1.375rem]">
-          {site.experienceYears} years in data, ML and AI, embedded with government, retail, BFSI, healthcare and technology customers; today leading a 10-person AI team while still shipping the code. My engagements end with numbers on the customer's P&amp;L, not with demos.
+        <p class="lead mt-5 max-w-3xl md:mt-7 md:text-[1.3rem]">
+          {site.experienceYears} years in data, ML and AI across government, retail, BFSI and healthcare. I lead a {numbers.teamSize}-person AI team, still ship the code, and measure success on the business P&amp;L: $2M a year saved, 10K+ requests a day in production.
         </p>
-        <div class="mt-10 flex flex-wrap gap-3.5">
-          <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
-          <button class="btn btn-secondary btn-lg" id="hero-ask">Ask my AI about fit</button>
-          <a class="btn btn-ghost btn-lg" href="/resume">Resume</a>
+        <div class="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap md:mt-9 md:[&>*]:!px-5">
+          <a class="btn btn-primary btn-lg col-span-2" href={site.calcom} target="_blank" rel="noopener">Book a 20-minute call</a>
+          <a class="btn btn-secondary btn-lg" href={site.resumePdf} download>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Resume PDF
+          </a>
+          <button class="btn btn-secondary btn-lg" id="hero-ask">Ask my AI</button>
         </div>
-        <p class="mt-5 text-base text-[var(--fg-muted)]">
-          Prefer a summary for the board? Read the <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href="/executive-brief">one-page executive brief</a> or <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href={site.executiveBriefPdf} download>download it as PDF</a>.
+        <p class="mt-5 hidden text-base text-[var(--fg-muted)] sm:block">
+          For boards and committees: the <a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href="/executive-brief">one-page executive brief</a> (<a class="underline decoration-accent-500 underline-offset-4 hover:text-[var(--fg)]" href={site.executiveBriefPdf} download>PDF</a>).
         </p>
       </div>
-      <div class="mx-auto w-full max-w-[17rem] sm:max-w-xs md:mt-2 md:max-w-[22rem] xl:max-w-[24rem]">
+
+      <div class="mx-auto hidden w-full md:block md:max-w-[17rem] lg:max-w-[21rem] xl:max-w-[24rem]">
         <div class="relative">
           <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-500/35 via-accent-500/5 to-transparent blur-2xl"></div>
           <picture>
             <source srcset="/images/naveen-800.avif" type="image/avif" />
             <source srcset="/images/naveen-800.webp" type="image/webp" />
-            <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] border border-[var(--line)] object-cover shadow-2xl" fetchpriority="high" />
+            <img src="/images/naveen-800.webp" width="800" height="800" alt="Naveen Kumar, Principal AI Architect" class="aspect-square w-full rounded-[2rem] border border-[var(--line)] object-cover shadow-2xl" loading="lazy" />
           </picture>
           <div class="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-ink-950/55 via-transparent to-transparent dark:from-ink-950/70" aria-hidden="true"></div>
-          <div class="card absolute -bottom-6 -left-4 flex items-center gap-3 px-4 py-3 shadow-xl sm:-left-8">
-            <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">10K+</div>
+          <div class="card absolute -bottom-6 -left-4 flex items-center gap-3 px-4 py-3 shadow-xl lg:-left-8">
+            <div class="text-2xl font-extrabold text-accent-600 lg:text-3xl dark:text-accent-400">10K+</div>
             <div class="text-sm leading-tight text-[var(--fg-muted)]">daily requests on a<br />government platform I built</div>
           </div>
-          <div class="card absolute -right-4 -top-5 px-4 py-3 shadow-xl sm:-right-8">
-            <div class="text-3xl font-extrabold text-accent-600 dark:text-accent-400">$600K</div>
-            <div class="text-sm leading-tight text-[var(--fg-muted)]">annual savings, Fortune 500</div>
+          <div class="card absolute -right-3 -top-5 px-4 py-3 shadow-xl lg:-right-8">
+            <div class="text-2xl font-extrabold text-accent-600 lg:text-3xl dark:text-accent-400">$2M</div>
+            <div class="text-sm leading-tight text-[var(--fg-muted)]">a year saved, Fortune 500</div>
           </div>
         </div>
-        <!-- Direct contact, next to the face, above the fold. -->
         <div class="card mt-12 px-5 py-4">
           <ContactStrip badge={false} label="Direct lines · same-day reply" class="!flex-col !items-start !gap-3" />
         </div>
       </div>
     </div>
 
-    <!-- Proof bar -->
+    <!-- Proof strip -->
     <div class="border-y border-[var(--line)] bg-[var(--bg-elev)]/60">
-      <div class="page grid grid-cols-2 gap-x-6 gap-y-8 py-10 sm:grid-cols-4 lg:grid-cols-8">
-        {metrics.map((m) => (
-          <a href={m.href} class="group">
-            <div class="text-3xl font-extrabold tracking-tight group-hover:text-accent-600 dark:group-hover:text-accent-400 xl:text-4xl">{m.value}</div>
-            <div class="mt-1.5 text-sm font-medium leading-tight text-[var(--fg-muted)]">{m.label}</div>
+      <div class="page grid grid-cols-2 gap-x-5 gap-y-6 py-7 sm:grid-cols-3 md:py-10 lg:grid-cols-5">
+        {proof.map((m, i) => (
+          <a href={m.href} class={`group ${i === proof.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
+            <div class="text-[1.85rem] font-extrabold leading-none tracking-tight group-hover:text-accent-600 sm:text-3xl xl:text-4xl dark:group-hover:text-accent-400">{m.value}</div>
+            <div class="mt-2 text-sm font-medium leading-snug text-[var(--fg-muted)]">{m.label}</div>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Role switcher -->
-  <Section id="hire-me-as" kicker="Hire me as" title="One background, five ways to deploy it." intro="Pick the role you are hiring for. The evidence, skills and reading below adapt to it. Everything here is from delivered work.">
-    <RoleSwitcher client:load roles={roles} caseStudies={csMeta} insights={inMeta} calcom={site.calcom} />
-  </Section>
-
-  <!-- Impact -->
-  <Section kicker="Impact" title="Numbers with the story behind them." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {metrics.map((m) => (
-        <a href={m.href} class="card flex flex-col p-7 transition-colors hover:border-accent-500">
-          <div class="stat text-accent-600 dark:text-accent-400">{m.value}</div>
-          <div class="mt-3 text-lg font-bold">{m.label}</div>
-          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{m.story}</p>
-        </a>
-      ))}
-    </div>
-    <p class="mt-8 text-base text-[var(--fg-muted)]">Industries: {industries.join(', ')}.</p>
+  <!-- Experience -->
+  <Section id="experience" kicker="Experience" title="Ten years, from data scientist to AI engineering leader." intro="Current role first. Every number here is from delivered work and matches the resume.">
+    <ExperienceSnapshot />
+    <p class="mt-6 text-sm text-[var(--fg-muted)]">Industries: {industries.join(', ')}.</p>
   </Section>
 
   <!-- Case studies -->
-  <Section kicker="Case studies" title="Production systems, decisions included." intro="Each case study covers context, success criteria, architecture, the decisions as ADRs, what shipped, outcomes, and what I would change.">
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-      {featured.map((c) => <CaseStudyCard entry={c} />)}
+  <Section kicker="Case studies" title="Production systems, decisions included." intro="Context, success criteria, architecture, decisions, what shipped and the measured outcome." class="bg-[var(--bg-elev)]/40">
+    <div class="snap-row">
+      {featured.map((c) => <div class="snap-item"><CaseStudyCard entry={c} /></div>)}
     </div>
-    <div class="mt-10">
-      <a class="btn btn-secondary btn-lg" href="/case-studies">All {caseStudies.length} case studies</a>
-    </div>
-  </Section>
-
-  <!-- How I work -->
-  <Section kicker="How I work" title="Six gates from discovery to run." intro="The engagement structure behind every outcome above. Each gate has an artifact, an owner and an exit criterion." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-5 md:grid-cols-3 xl:grid-cols-6">
-      {[
-        ['Discovery', 'Baseline, owner, success criterion signed by a sponsor.'],
-        ['Scoped slice', 'Highest value, lowest blast radius. Golden set v1.'],
-        ['Working POC', 'Real data. Metric moves. Failure modes listed.'],
-        ['Production ready', 'Security, residency, evals gate, SLOs, runbooks, cost model.'],
-        ['Cutover', 'Staged rollout, on-call, baseline improves in production.'],
-        ['Run and expand', 'Weekly sampling, monthly review, field-to-product loop.'],
-      ].map(([t, d], i) => (
-        <div class="card p-6">
-          <div class="text-4xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">0{i + 1}</div>
-          <div class="mt-3 text-lg font-bold">{t}</div>
-          <p class="mt-2 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
-        </div>
-      ))}
-    </div>
-    <div class="mt-10 flex flex-wrap gap-3">
-      <a class="btn btn-secondary btn-lg" href="/architecture/forward-deployed-playbook">Read the playbook</a>
-      <a class="btn btn-ghost btn-lg" href="/architecture">All architecture and ADRs</a>
+    <div class="mt-8">
+      <a class="btn btn-secondary btn-lg w-full sm:w-auto" href="/case-studies">All {caseStudies.length} case studies</a>
     </div>
   </Section>
 
-  <!-- Customer zero: for founders and CTOs who need 0-to-1, not just scale -->
-  <Section kicker="Customer zero" title="I have sold, scoped and shipped the first deployment myself. Three times." intro="Founders and CTOs ask a different question from enterprises: can you do the zero-to-one, in front of the customer, before there is a team? Yes, and here is where.">
-    <div class="grid gap-6 md:grid-cols-3">
-      {[
-        ['Fortune 500 retailer, 2022', 'Ran the discovery workshops, picked the first slice, built the POC in two weeks, then hardened it with the client engineers so they could own it. That slice grew into the $600K per year program.', '/case-studies/circle-k-agentic-rag', 'Read the case study'],
-        ['Government entity, 2025', 'Joined with a mandate to set direction and build a team. Built the first production slice of the agentic platform myself first, so the guardrails were grounded in a real system, then hired eight and onboarded twelve into it.', '/case-studies/adek-agentic-platform', 'Read the case study'],
-        ['This site, 2026', 'Everything here, including the grounded assistant, the Worker, the eval and routing demos and the deploy pipeline, was built hands-on in days on free infrastructure. The evidence of craft is one click away.', '/demos', 'Open the live demos'],
-      ].map(([t, d, href, cta]) => (
-        <div class="card flex flex-col p-7">
-          <h3 class="h-card">{t}</h3>
-          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
-          <a class="btn btn-secondary mt-6 self-start" href={href}>{cta}</a>
-        </div>
-      ))}
-    </div>
-  </Section>
-
-  <!-- Still shipping -->
-  <Section kicker="Still shipping" title="Recent work, with dates." intro="Leadership did not stop the commits. A curated log of what I personally shipped recently, and my public GitHub pulled live." class="bg-[var(--bg-elev)]/40">
-    <StillShipping client:visible items={shipping} githubUser={site.github.split('/').pop()!} githubUrl={site.github} />
+  <!-- Roles -->
+  <Section id="hire-me-as" kicker="Roles" title="Hiring-ready for five AI roles." intro="Pick the role you are hiring for; the evidence and skills adapt to it.">
+    <RoleSwitcher client:visible roles={roles} caseStudies={csMeta} insights={inMeta} calcom={site.calcom} />
   </Section>
 
   <!-- Skills snapshot -->
-  <Section kicker="Skills" title="Organised by what the market screens for in 2026." intro="Not a tool list. Each group states why it matters to hiring teams now and what I bring at depth.">
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+  <Section kicker="Skills" title="What the 2026 AI market screens for." class="bg-[var(--bg-elev)]/40">
+    <div class="grid gap-4 sm:grid-cols-2 md:gap-6 xl:grid-cols-3">
       {skillGroups.slice(0, 6).map((g) => (
-        <div class="card p-7">
+        <div class="card p-5 sm:p-7">
           <h3 class="h-card">{g.title}</h3>
-          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{g.demand}</p>
-          <div class="mt-5 flex flex-wrap gap-2">
+          <p class="mt-3 hidden text-base leading-relaxed text-[var(--fg-muted)] md:block">{g.demand}</p>
+          <div class="mt-4 flex flex-wrap gap-2 md:mt-5">
             {g.items.filter((i) => i.depth === 'expert').slice(0, 5).map((i) => <span class="chip">{i.name}</span>)}
           </div>
         </div>
       ))}
     </div>
-    <div class="mt-10"><a class="btn btn-secondary btn-lg" href="/skills">Full skills matrix</a></div>
+    <div class="mt-8"><a class="btn btn-secondary btn-lg w-full sm:w-auto" href="/skills">Full skills matrix</a></div>
   </Section>
 
-  <!-- Leadership -->
-  <Section kicker="Leadership" title="Built the team, set the bar, owned the outcomes." class="bg-[var(--bg-elev)]/40">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Leadership and delivery -->
+  <Section kicker="Leadership and delivery" title="Built the team, set the bar, owned the outcomes.">
+    <div class="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
       {[
         [String(numbers.teamSize), 'person team: AI engineers, data scientists, ML and AIOps'],
         [`${numbers.hired} / ${numbers.onboarded}`, 'hired / onboarded, including partner staff'],
         [String(numbers.programs), `programs owned, up to ${numbers.concurrentPrograms} concurrent`],
-        ['Escalation', 'point for delivery risk, blockers and customer concerns'],
+        ['30%', 'AI infrastructure cost cut through routing, caching, right-sizing'],
       ].map(([v, l]) => (
-        <div class="card p-7">
-          <div class="stat">{v}</div>
-          <p class="mt-4 text-base leading-relaxed text-[var(--fg-muted)]">{l}</p>
+        <div class="card p-5 sm:p-7">
+          <div class="stat text-accent-600 dark:text-accent-400">{v}</div>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--fg-muted)] sm:text-base">{l}</p>
         </div>
       ))}
     </div>
-    <div class="mt-10 flex flex-wrap gap-3">
+    <h3 class="mt-12 text-xl font-extrabold tracking-tight sm:text-2xl">Six gates from discovery to run</h3>
+    <ol class="mt-5 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-6">
+      {gates.map(([t, d], i) => (
+        <li class="card flex gap-4 p-4 sm:p-5 xl:block">
+          <div class="text-2xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400 xl:text-3xl">0{i + 1}</div>
+          <div class="xl:mt-2">
+            <div class="font-bold">{t}</div>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--fg-muted)]">{d}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <a class="btn btn-secondary btn-lg" href="/leadership">Leadership and operating model</a>
-      <a class="btn btn-ghost btn-lg" href="/executive-brief">Executive brief</a>
+      <a class="btn btn-ghost btn-lg" href="/architecture/forward-deployed-playbook">Read the playbook</a>
     </div>
   </Section>
 
   <!-- Insights -->
-  <Section kicker="Insights" title="Writing for the people who decide." intro={`Daily on LinkedIn to ${site.linkedinFollowers} followers; long-form here. Executive strategy, agentic systems in production, platform economics, governance.`}>
-    <div class="grid gap-6 md:grid-cols-3">
-      {latest.map((i) => <InsightCard entry={i} />)}
+  <Section kicker="Insights" title="Writing for the people who decide." intro={`Daily on LinkedIn to ${site.linkedinFollowers} followers; long-form here.`} class="bg-[var(--bg-elev)]/40">
+    <div class="snap-row">
+      {latest.map((i) => <div class="snap-item"><InsightCard entry={i} /></div>)}
     </div>
-    <div class="mt-10 flex flex-wrap gap-3">
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <a class="btn btn-secondary btn-lg" href="/insights">All {insights.length} articles</a>
       <a class="btn btn-ghost btn-lg" href={site.linkedin} target="_blank" rel="noopener">Follow on LinkedIn</a>
     </div>
@@ -225,11 +210,11 @@ const latest = insights.slice(0, 3);
 
   <!-- Testimonials -->
   {testimonials.length > 0 && (
-    <Section kicker="What people say" title="From the people I have worked with." class="bg-[var(--bg-elev)]/40">
+    <Section kicker="What people say" title="From the people I have worked with.">
       <div class="grid gap-6 md:grid-cols-2">
         {testimonials.map(({ entry: t, Content }) => (
-          <figure class="card p-8">
-            <blockquote class="text-lg leading-relaxed text-[var(--fg)]"><Content /></blockquote>
+          <figure class="card p-6 sm:p-8">
+            <blockquote class="text-base leading-relaxed text-[var(--fg)] sm:text-lg"><Content /></blockquote>
             <figcaption class="mt-5 text-base text-[var(--fg-muted)]"><strong class="text-[var(--fg)]">{t.data.name}</strong>, {t.data.designation}{t.data.date ? ` (${t.data.date})` : ''}</figcaption>
           </figure>
         ))}
@@ -238,21 +223,21 @@ const latest = insights.slice(0, 3);
   )}
 
   <!-- CTA -->
-  <section class="py-20 md:py-28">
+  <section class="py-12 md:py-24">
     <div class="page">
-      <div class="card relative overflow-hidden p-10 md:p-16">
+      <div class="card relative overflow-hidden p-6 sm:p-10 md:p-14">
         <div class="absolute inset-0 -z-10 glow"></div>
-        <div class="grid items-center gap-10 md:grid-cols-[1.6fr_1fr]">
+        <div class="grid items-center gap-8 md:grid-cols-[1.5fr_1fr] md:gap-10">
           <div>
             <p class="kicker">Next step</p>
-            <h2 class="h-section mt-3">If you are hiring for AI leadership or forward-deployed engineering, let us talk this week.</h2>
-            <p class="lead mt-5">Twenty minutes is enough to tell whether there is a fit. I will come prepared with questions about your outcomes, not a pitch.</p>
+            <h2 class="h-section mt-3">Hiring for AI leadership or forward-deployed engineering? Let us talk this week.</h2>
+            <p class="lead mt-5">{site.joinerStatus}. Twenty minutes is enough to tell whether there is a fit.</p>
           </div>
           <div class="flex flex-col gap-3">
             <a class="btn btn-primary btn-lg" href={site.calcom} target="_blank" rel="noopener">Book a call</a>
-            <a class="btn btn-secondary btn-lg" href={`mailto:${site.email}`}>Email {site.email}</a>
-            <a class="btn btn-secondary btn-lg" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>
-            <a class="btn btn-ghost" href="/hire">How I engage: full-time, relocation, fractional</a>
+            <a class="btn btn-secondary btn-lg" href={site.resumePdf} download>Download resume (PDF)</a>
+            <a class="btn btn-secondary btn-lg break-all" href={`mailto:${site.email}`}>Email me</a>
+            <a class="btn btn-secondary btn-lg" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp {site.phoneUAE}</a>
           </div>
         </div>
       </div>

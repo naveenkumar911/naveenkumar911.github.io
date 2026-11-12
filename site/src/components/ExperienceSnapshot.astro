@@ -1,0 +1,33 @@
+---
+/**
+ * Recruiter-first career timeline: title, organisation, dates and the two strongest outcomes per role,
+ * so a screener can verify the resume story in under a minute.
+ */
+import { experience } from '@/data/profile';
+import { site } from '@/config';
+---
+<ol class="relative space-y-5 md:space-y-6">
+  {experience.map((e, i) => (
+    <li class="card relative p-5 sm:p-7 md:grid md:grid-cols-[13rem_1fr] md:gap-8 lg:grid-cols-[15rem_1fr]">
+      <div>
+        <div class={`inline-flex rounded-full px-3 py-1 text-sm font-bold ${i === 0 ? 'bg-accent-500 text-ink-950' : 'border border-[var(--line)] text-[var(--fg-muted)]'}`}>{e.period}</div>
+        <div class="mt-2 text-sm text-[var(--fg-muted)] md:mt-3">{e.location}</div>
+      </div>
+      <div class="mt-3 md:mt-0">
+        <h3 class="text-xl font-extrabold leading-snug tracking-tight sm:text-2xl">{e.role}</h3>
+        <div class="mt-1 text-base font-semibold text-accent-600 dark:text-accent-400">{e.org}</div>
+        {e.engagements && <p class="mt-2 text-sm leading-relaxed text-[var(--fg-muted)]">{e.engagements}</p>}
+        <ul class="mt-4 space-y-2 text-[0.975rem] leading-relaxed sm:text-base">
+          {e.highlights.slice(0, i === 0 ? 3 : 2).map((h) => (
+            <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"></span><span>{h}</span></li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  ))}
+</ol>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+  <a class="btn btn-primary btn-lg" href={site.resumePdf} download>Download resume (PDF)</a>
+  <a class="btn btn-secondary btn-lg" href={site.resumeDocx} download>Word version</a>
+  <a class="btn btn-ghost btn-lg" href="/resume">Full resume online</a>
+</div>

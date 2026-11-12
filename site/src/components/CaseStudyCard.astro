@@ -4,14 +4,14 @@ interface Props { entry: CollectionEntry<'caseStudies'>; compact?: boolean }
 const { entry, compact = false } = Astro.props;
 const d = entry.data;
 ---
-<a href={`/case-studies/${entry.id}`} class="card group flex h-full flex-col p-7 transition-colors hover:border-accent-500">
+<a href={`/case-studies/${entry.id}`} class="card group flex h-full flex-col p-5 transition-colors sm:p-7 hover:border-accent-500">
   <p class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">{d.industry}</p>
   <h3 class="h-card mt-3 group-hover:text-accent-600 dark:group-hover:text-accent-400">{d.title}</h3>
-  {!compact && <p class="mt-4 text-base leading-relaxed text-[var(--fg-muted)] line-clamp-4">{d.summary}</p>}
-  <div class="mt-6 grid grid-cols-3 gap-4 border-t border-[var(--line)] pt-5">
+  {!compact && <p class="mt-4 text-base leading-relaxed text-[var(--fg-muted)] line-clamp-3 sm:line-clamp-4">{d.summary}</p>}
+  <div class="mt-5 grid grid-cols-3 gap-3 border-t border-[var(--line)] pt-5">
     {d.outcomes.slice(0, 3).map((o) => (
       <div>
-        <div class="text-2xl font-extrabold tracking-tight text-accent-600 dark:text-accent-400">{o.value}</div>
+        <div class="text-xl font-extrabold leading-tight tracking-tight text-accent-600 sm:text-2xl dark:text-accent-400">{o.value}</div>
         <div class="mt-1 text-sm leading-tight text-[var(--fg-muted)]">{o.label}</div>
       </div>
     ))}

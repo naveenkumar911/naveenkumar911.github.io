@@ -106,8 +106,8 @@ export default function RoutingSimulator() {
     setModels((ms) => ms.map((m) => (m.id === id ? { ...m, [field]: v } : m)));
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
-      <div className="card p-6 md:p-7">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr]">
+      <div className="card min-w-0 p-5 md:p-7">
         <h3 className="h-card">Workload</h3>
         <div className="mt-5 space-y-5">
           <Field label={`Requests per month: ${requests.toLocaleString()}`}>
@@ -164,8 +164,8 @@ export default function RoutingSimulator() {
         </div>
       </div>
 
-      <div className="space-y-6">
-        <div className="card p-6 md:p-7">
+      <div className="min-w-0 space-y-6">
+        <div className="card min-w-0 overflow-hidden p-5 md:p-7">
           <h3 className="h-card">Monthly cost by strategy</h3>
           <div className="mt-5 space-y-5">
             {scenarios.map((s, i) => {
@@ -190,7 +190,7 @@ export default function RoutingSimulator() {
           </div>
         </div>
 
-        <div className="card p-6 md:p-7">
+        <div className="card min-w-0 overflow-hidden p-5 md:p-7">
           <h3 className="h-card">Routing table the gate produced</h3>
           <p className="mt-2 text-sm text-[var(--fg-muted)]">Each class goes to the cheapest tier whose judge score on that class clears the floor. Raise the floor and watch traffic escalate; that is the cost of quality made explicit.</p>
           <div className="mt-4 space-y-2">

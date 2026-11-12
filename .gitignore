@@ -9,7 +9,9 @@
 # source photos and working resume (public copies live under site/public/)
 Naveen*.jpg
 Naveen*.png
-NaveenKumar_Resume72.docx
+NaveenKumar_Resume7*.docx
+NaveenKumar_Resume7*.pdf
+~$*.docx
 
 # unapproved testimonial drafts (approved ones are named without the draft- prefix)
 site/src/content/testimonials/draft-*.md

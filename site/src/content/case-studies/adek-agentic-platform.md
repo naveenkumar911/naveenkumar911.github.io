@@ -1,8 +1,8 @@
 ---
 title: "Government-scale Agentic AI platform in a data-sovereign environment"
-client: "CPC / ADEK (Abu Dhabi Department of Education and Knowledge) with Watermelon"
+client: "UAE government AI programs: ADEK (Abu Dhabi Department of Education and Knowledge) and Watermelon"
 role: "AI Lead Architect and AI Engineering Leader; hands-on architect and builder of the core platform"
-period: "Apr 2025 - Present"
+period: "Apr 2025 - Jun 2026"
 industry: "Government, education"
 summary: "Architected, built and now operate an enterprise agentic AI platform (LLM agents, agentic workflows, enterprise RAG) for a UAE government entity: 10K+ daily requests for thousands of users at 98% uptime, engagement up 40%, operating cost down about 30%, inside strict data-residency constraints."
 outcomes:

@@ -26,9 +26,9 @@ export const roles: RoleTrack[] = [
     ],
     headline: 'I embed with the customer, ship production agents in weeks, and hand back a runbook, not a demo.',
     pitch:
-      'Twelve-plus years of customer-embedded delivery across government, retail, asset management, pharma and sports media. I run discovery, scope against success criteria, build the first version myself, then scale a team to production cutover and run. My engagements end with measurable outcomes on the customer P&L, and the field learnings flow back into product.',
+      'Ten-plus years of customer-embedded delivery across government, retail, asset management, pharma and sports media. I run discovery, scope against success criteria, build the first version myself, then scale a team to production cutover and run. My engagements end with measurable outcomes on the customer P&L, and the field learnings flow back into product.',
     proof: [
-      '$600K/yr savings at Circle K from agentic RAG taken POC to production',
+      '$2M/yr savings at Circle K from agentic RAG taken POC to production',
       '10K+ requests/day at 98% uptime on a government agentic platform I architected and coded',
       '12 forward-deployed programs owned, up to 6 running concurrently',
       'Discovery-to-production playbook with six gates, used across three organisations',
@@ -47,7 +47,7 @@ export const roles: RoleTrack[] = [
     pitch:
       'Most enterprises have pilots; few have a repeatable way to decide where AI acts, where humans decide, how value is measured and what happens when the system is wrong. I have built that operating model inside a government entity and a Fortune 500 retailer, with the architecture, governance, team and vendor management to run it. I write publicly about this to 16K followers.',
     proof: [
-      'Built and led a 10-person AI, data science and AIOps team; hired 8, onboarded 12',
+      'Built and led a 12-person AI, data science and AIOps team; hired 8, onboarded 12',
       'Established AI governance: responsible AI, model evaluation, prompt governance, security, deployment standards',
       '30% infrastructure cost reduction from model routing, caching and right-sizing',
       'Defined data platform, data architecture and digital transformation roadmaps with Directors and business leaders',

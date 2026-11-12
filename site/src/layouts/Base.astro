@@ -4,6 +4,7 @@ import SEO from '@/components/SEO.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import ChatLauncher from '@/components/ChatLauncher.astro';
+import MobileActionBar from '@/components/MobileActionBar.astro';
 import { site } from '@/config';
 
 interface Props {
@@ -24,7 +25,7 @@ const { hideChat = false, bodyClass = '', ...seo } = Astro.props;
 <html lang="en" class="scroll-smooth dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -55,5 +56,6 @@ const { hideChat = false, bodyClass = '', ...seo } = Astro.props;
     </main>
     <Footer />
     {!hideChat && <ChatLauncher />}
+    <MobileActionBar />
   </body>
 </html>

@@ -24,20 +24,6 @@ export const shipping: Shipped[] = [
     tag: 'production',
   },
   {
-    date: '2026-07-06',
-    title: 'Semantic cache and tool-call guardrails on the government agentic platform',
-    detail: 'Release v1.7 of the core platform: cache in front of the router, write-action guardrails with approval records. Cost per request down a further 20%.',
-    href: '/case-studies/adek-agentic-platform',
-    tag: 'production',
-  },
-  {
-    date: '2026-06-15',
-    title: 'Arabic golden set tripled; LoRA fine-tune on the policy corpus',
-    detail: 'Per-category groundedness for Arabic queries from 0.86 to 0.92 on the expanded set; gate now enforced per language.',
-    href: '/case-studies/llm-evaluation-harness',
-    tag: 'production',
-  },
-  {
     date: '2026-05-29',
     title: 'Product similarity search (open repo)',
     detail: 'Embedding-based similarity search over a product catalogue with evaluation notebook.',

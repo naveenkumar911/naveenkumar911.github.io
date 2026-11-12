@@ -161,7 +161,7 @@ export default function ChatWidget({ endpoint, calcom, email }: Props) {
     <>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-5 right-5 z-[60] flex items-center gap-2 rounded-full bg-accent-500 px-4 py-3 font-semibold text-ink-950 shadow-lg shadow-accent-500/30 transition hover:bg-accent-400 no-print"
+        className="chat-launcher fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom))] right-4 z-[60] flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-full bg-accent-500 px-3.5 py-3 md:bottom-5 md:right-5 md:px-4 font-semibold text-ink-950 shadow-lg shadow-accent-500/30 transition hover:bg-accent-400 no-print"
         aria-expanded={open}
         aria-controls="ask-naveen-panel"
       >
@@ -174,7 +174,7 @@ export default function ChatWidget({ endpoint, calcom, email }: Props) {
           id="ask-naveen-panel"
           role="dialog"
           aria-label="Ask Naveen's AI"
-          className="fixed bottom-20 right-4 z-[60] flex h-[min(640px,calc(100vh-6.5rem))] w-[min(420px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-elev)] shadow-2xl no-print"
+          className="fixed inset-x-2 bottom-[calc(8.75rem+env(safe-area-inset-bottom))] top-20 z-[60] flex sm:inset-x-auto sm:right-4 sm:top-auto sm:h-[min(640px,calc(100dvh-11rem))] sm:w-[min(420px,calc(100vw-2rem))] md:bottom-20 md:h-[min(640px,calc(100dvh-6.5rem))] flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-elev)] shadow-2xl no-print"
         >
           <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-3">
             <div>

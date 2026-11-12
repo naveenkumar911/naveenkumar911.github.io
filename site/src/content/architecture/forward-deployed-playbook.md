@@ -2,7 +2,7 @@
 title: "Forward-Deployed Playbook: six gates from discovery to run"
 kind: "playbook"
 summary: "The engagement structure I use to take AI from a customer conversation to a system the customer runs. Six gates, each with an artifact, an owner and an exit criterion. It is why my engagements end with metrics instead of demos."
-status: "Used across CPC/ADEK, Circle K/Huloop and earlier client engagements"
+status: "Used across UAE government programs, Circle K/Huloop and earlier client engagements"
 order: 2
 ---
 

@@ -13,7 +13,7 @@ const words = entry.body ? entry.body.split(/\s+/).length : 800;
 const minutes = Math.max(3, Math.round(words / 220));
 const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
-<a href={`/insights/${entry.id}`} class="card group flex h-full flex-col p-7 transition-colors hover:border-accent-500">
+<a href={`/insights/${entry.id}`} class="card group flex h-full flex-col p-5 transition-colors sm:p-7 hover:border-accent-500">
   <div class="flex items-center justify-between gap-3 text-sm text-[var(--fg-muted)]">
     <span class="font-bold uppercase tracking-[0.14em] text-accent-600 dark:text-accent-400">{trackLabel[d.track]}</span>
     <span>{minutes} min</span>

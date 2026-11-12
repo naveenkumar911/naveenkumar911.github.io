@@ -48,6 +48,6 @@ The single most useful design decision in getting agents approved is the blast-r
 
 ## What this looked like in practice
 
-At Circle K, the first slice was grounded answers for the support function, measured on resolution time. It took weeks, not months, and it produced the metric that funded everything after it: resolution time down 40 percent, and eventually $600K a year in savings across the program. On the government platform, the same gates took an agentic platform from a first workflow to more than ten thousand requests a day at 98 percent uptime, with a Director signing each expansion.
+At Circle K, the first slice was grounded answers for the support function, measured on resolution time. It took weeks, not months, and it produced the metric that funded everything after it: resolution time down 40 percent, and eventually $2M a year in savings across the program. On the government platform, the same gates took an agentic platform from a first workflow to more than ten thousand requests a day at 98 percent uptime, with a Director signing each expansion.
 
 The model mattered. The gates mattered more.

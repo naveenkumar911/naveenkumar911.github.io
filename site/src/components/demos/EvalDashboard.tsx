@@ -94,13 +94,13 @@ export default function EvalDashboard() {
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="card p-6 md:p-7">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_1fr]">
+        <div className="card min-w-0 p-5 md:p-7">
           <h3 className="h-card">{METRIC_META[metric].label} across releases</h3>
           <Chart metric={metric} selected={selected} baseline={baselineId} />
           <p className="mt-3 text-sm text-[var(--fg-muted)]">Dashed line is the gate. Notice v1.4: a 35% token-cost win that quietly broke Arabic and triage. The gate caught it; v1.5 kept the win only where it held.</p>
         </div>
-        <div className="card p-6 md:p-7">
+        <div className="card min-w-0 p-5 md:p-7">
           <h3 className="h-card">By category, {release.id}</h3>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-sm">
@@ -128,7 +128,7 @@ export default function EvalDashboard() {
         </div>
       </div>
 
-      <div className="card p-6 md:p-7">
+      <div className="card min-w-0 p-5 md:p-7">
         <h3 className="h-card">Worst regressions in {release.id} with judge rationale</h3>
         {regressions.length === 0 ? (
           <p className="mt-3 text-base text-[var(--fg-muted)]">No item in the golden set regressed by more than 0.15 in this release.</p>

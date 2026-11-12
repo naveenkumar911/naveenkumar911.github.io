@@ -51,7 +51,7 @@ flowchart LR
 
 - More than 1,000 tasks per month automated across supply chain, pricing and CRM operations.
 - Operations staff redeployed to exception handling and supplier relationships.
-- Contribution to the $600K per year savings reported for the engagement.
+- Contribution to the $2M per year savings reported for the engagement.
 
 ## Why it matters for larger programs
 

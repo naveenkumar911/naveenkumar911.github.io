@@ -6,7 +6,7 @@ import { experience } from '@/data/profile';
 ---
 <Base title="Leadership | Naveen Kumar" description="How Naveen Kumar builds and leads AI engineering teams: hiring bar, onboarding, operating model, stakeholder and vendor management, and the outcomes the team owns.">
   <Section kicker="Leadership" title="Built the team, set the bar, owned the outcomes." intro="Head of AI and FDE-leadership searches look for one thing above all: a named owner who took AI from pilot to production against a metric, and built the people and operating model that keep it there.">
-    <div class="grid gap-5 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 xl:grid-cols-4">
       {[
         [String(numbers.teamSize), 'person team', 'AI engineers, data scientists, ML engineers and AIOps, plus cross-functional squads and partner staff.'],
         [`${numbers.hired} / ${numbers.onboarded}`, 'hired / onboarded', `Hired ${numbers.hired} engineers through my bar; onboarded ${numbers.onboarded} including implementation-partner engineers into the method.`],
@@ -22,7 +22,23 @@ import { experience } from '@/data/profile';
     </div>
   </Section>
 
-  <Section kicker="Operating model" title="How the team runs." class="bg-[var(--bg-elev)]/40">
+  <Section kicker="Customer zero" title="I have scoped and shipped the first deployment myself. Three times." intro="Founders and CTOs ask a different question from enterprises: can you do the zero-to-one, in front of the customer, before there is a team? Yes, and here is where." class="bg-[var(--bg-elev)]/40">
+    <div class="grid gap-5 md:grid-cols-3">
+      {[
+        ['Fortune 500 retailer, 2022', 'Ran the discovery workshops, picked the first slice, built the POC in two weeks, then hardened it with the client engineers so they could own it. That slice grew into the $2M per year program.', '/case-studies/circle-k-agentic-rag', 'Read the case study'],
+        ['Government entity, 2025', 'Joined with a mandate to set direction and build a team. Built the first production slice of the agentic platform myself first, so the guardrails were grounded in a real system, then hired eight and onboarded twelve into it.', '/case-studies/adek-agentic-platform', 'Read the case study'],
+        ['This site, 2026', 'Everything here, including the grounded assistant, the Worker, the eval and routing demos and the deploy pipeline, was built hands-on on free infrastructure. The evidence of craft is one click away.', '/demos', 'Open the live demos'],
+      ].map(([t, d, href, cta]) => (
+        <div class="card flex flex-col p-5 sm:p-7">
+          <h3 class="h-card">{t}</h3>
+          <p class="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">{d}</p>
+          <a class="btn btn-secondary mt-6 self-start" href={href}>{cta}</a>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="Operating model" title="How the team runs.">
     <div class="grid gap-5 md:grid-cols-2">
       {[
         ['Hiring bar', 'Has shipped, not demoed, an AI system into someone else\'s production environment. Can describe baseline, metric and what happened after cutover. Writes production code and is honest about what they would not build. Treats evaluation and handover as part of the build. I run the final technical and judgment interview for every hire.'],
@@ -42,7 +58,7 @@ import { experience } from '@/data/profile';
     </div>
   </Section>
 
-  <Section kicker="Career" title="Twelve-plus years in data, ML and AI, from data scientist to team leader.">
+  <Section kicker="Career" title="Ten-plus years in data, ML and AI, from data scientist to team leader.">
     <ol class="relative border-l border-[var(--line)] pl-6">
       {experience.map((e) => (
         <li class="mb-10">
@@ -50,6 +66,7 @@ import { experience } from '@/data/profile';
           <div class="text-base text-[var(--fg-muted)]">{e.period} · {e.location}</div>
           <h3 class="mt-1 text-2xl font-extrabold tracking-tight md:text-3xl">{e.role}</h3>
           <div class="mt-1 text-lg font-medium text-[var(--fg-muted)]">{e.org}</div>
+          {e.engagements && <p class="mt-1 text-sm text-[var(--fg-muted)]">{e.engagements}</p>}
           <p class="mt-4 max-w-4xl text-lg text-[var(--fg-muted)]">{e.summary}</p>
           <ul class="mt-4 max-w-4xl space-y-2.5 text-base">
             {e.highlights.map((h) => (

@@ -1,6 +1,6 @@
 ---
 title: "LLM evaluation and observability harness that became a release gate"
-client: "CPC / ADEK platform, patterns reused from Circle K"
+client: "UAE government agentic platform, patterns reused from Circle K"
 role: "Architect and lead implementer"
 period: "2023 - Present"
 industry: "Cross-industry platform capability"

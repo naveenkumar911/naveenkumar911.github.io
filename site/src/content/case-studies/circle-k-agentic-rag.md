@@ -4,9 +4,9 @@ client: "Circle K with Huloop.ai"
 role: "Lead AI Solutions Architect and Forward Deployed Engineer"
 period: "Jul 2022 - Apr 2025"
 industry: "Retail and convenience"
-summary: "Embedded with retail business and engineering teams to take agentic RAG and real-time LLM inference from proof of concept to production: $600K per year in savings, support resolution time down 40%, answer relevance up 25%, with fine-tuned and right-sized models cutting inference cost."
+summary: "Embedded with retail business and engineering teams to take agentic RAG and real-time LLM inference from proof of concept to production: $2M per year in savings, support resolution time down 40%, answer relevance up 25%, with fine-tuned and right-sized models cutting inference cost."
 outcomes:
-  - { value: "$600K", label: "annual savings" }
+  - { value: "$2M", label: "annual savings" }
   - { value: "-40%", label: "support resolution time" }
   - { value: "+25%", label: "answer relevance" }
   - { value: "POC to prod", label: "with CI/CD, monitoring, runbooks" }
@@ -16,7 +16,7 @@ featured: true
 order: 2
 verify:
   - "Named workstreams (store-operations knowledge assistant, supply and pricing automation, text-to-SQL analytics) are consistent with resume bullets and Key Projects; confirm names and scope"
-  - "Breakdown of the $600K into support deflection, automation and inference savings is illustrative; adjust proportions if you know them"
+  - "Breakdown of the $2M into support deflection, automation and inference savings is illustrative; adjust proportions if you know them"
 ---
 
 ## Context
@@ -67,7 +67,7 @@ flowchart LR
 
 ## Outcomes
 
-- $600K per year in cost savings across support deflection, operations automation and inference cost reduction.
+- $2M per year in cost savings across support deflection, operations automation and inference cost reduction.
 - Support resolution time down 40%; answer relevance up 25%.
 - A client engineering team able to run and extend the platform after handover.
 

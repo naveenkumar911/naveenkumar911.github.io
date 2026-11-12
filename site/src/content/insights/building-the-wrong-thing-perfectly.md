@@ -42,7 +42,7 @@ If two or more of these have no answer, the initiative is a research project, wh
 
 At a retailer I embedded with, the first request was a chatbot for store staff. The workshop showed that the real cost was not staff asking questions; it was support agents re-answering the same questions across channels with inconsistent answers, and stores waiting hours for confirmations. The workflow change was consistent, cited answers delivered where the question arose, plus automation of the confirmation steps that did not need a human at all.
 
-The system we built was still, technically, a chatbot with retrieval and agents. But it was scoped to a metric (resolution time), a workflow (support triage and confirmation), and data we validated first. It delivered $600K a year in savings. The originally requested chatbot would have been a nicer FAQ.
+The system we built was still, technically, a chatbot with retrieval and agents. But it was scoped to a metric (resolution time), a workflow (support triage and confirmation), and data we validated first. It delivered $2M a year in savings. The originally requested chatbot would have been a nicer FAQ.
 
 ## The role of governance in "building the right thing"
 

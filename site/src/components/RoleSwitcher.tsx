@@ -13,6 +13,7 @@ interface Props {
 
 export default function RoleSwitcher({ roles, caseStudies, insights, calcom }: Props) {
   const [active, setActive] = useState(roles[0].id);
+  const [more, setMore] = useState(false);
 
   // Support deep links like /#hire-me-as?track=platform or hash "#track=platform"
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function RoleSwitcher({ roles, caseStudies, insights, calcom }: P
 
   return (
     <div className="card overflow-hidden">
-      <div role="tablist" aria-label="Target role tracks" className="flex gap-1.5 overflow-x-auto border-b border-[var(--line)] p-2.5 md:flex-wrap">
+      <div role="tablist" aria-label="Target role tracks" className="flex flex-wrap gap-1.5 border-b border-[var(--line)] p-2 sm:p-2.5">
         {roles.map((r) => {
           const selected = r.id === role.id;
           return (
@@ -38,7 +39,7 @@ export default function RoleSwitcher({ roles, caseStudies, insights, calcom }: P
                 setActive(r.id);
                 history.replaceState(null, '', `#hire-me-as?track=${r.id}`);
               }}
-              className={`whitespace-nowrap rounded-xl px-4 py-3 text-base font-semibold transition-colors md:px-5 ${
+              className={`min-h-11 rounded-xl px-3 py-2 text-sm font-semibold transition-colors sm:px-4 sm:text-base md:px-5 md:py-3 ${
                 selected ? 'bg-accent-500 text-ink-950 shadow-md' : 'text-[var(--fg-muted)] hover:bg-[var(--bg)] hover:text-[var(--fg)]'
               }`}
             >
@@ -48,19 +49,19 @@ export default function RoleSwitcher({ roles, caseStudies, insights, calcom }: P
         })}
       </div>
 
-      <div role="tabpanel" id={`panel-${role.id}`} aria-labelledby={`tab-${role.id}`} className="grid gap-10 p-7 md:p-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
+      <div role="tabpanel" id={`panel-${role.id}`} aria-labelledby={`tab-${role.id}`} className="grid gap-6 p-5 sm:p-7 md:p-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
         <div>
           <p className="kicker">{role.audience}</p>
-          <h3 className="mt-3 text-3xl font-extrabold leading-[1.1] tracking-tight md:text-4xl xl:text-[2.75rem]">{role.headline}</h3>
-          <p className="lead mt-5">{role.pitch}</p>
+          <h3 className="mt-3 text-2xl font-extrabold leading-[1.15] tracking-tight sm:text-3xl md:text-4xl xl:text-[2.75rem]">{role.headline}</h3>
+          <p className="lead mt-4 md:mt-5">{role.pitch}</p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-5 hidden flex-wrap gap-2 sm:flex md:mt-6">
             {role.titles.map((t) => (
               <span key={t} className="chip">{t}</span>
             ))}
           </div>
 
-          <ul className="mt-8 space-y-3">
+          <ul className="mt-6 space-y-3 md:mt-8">
             {role.proof.map((p) => (
               <li key={p} className="flex gap-3 text-base leading-relaxed md:text-[1.0625rem]">
                 <svg className="mt-1.5 h-5 w-5 shrink-0 text-accent-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 13l4 4L19 7" /></svg>
@@ -69,13 +70,17 @@ export default function RoleSwitcher({ roles, caseStudies, insights, calcom }: P
             ))}
           </ul>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-9">
             <a className="btn btn-primary btn-lg" href={calcom} target="_blank" rel="noopener">{role.cta}</a>
             <a className="btn btn-secondary btn-lg" href={`/hire#${role.id}`}>How I would engage</a>
           </div>
         </div>
 
-        <div className="space-y-8">
+        <button type="button" className="btn btn-secondary w-full lg:hidden" aria-expanded={more} onClick={() => setMore((m) => !m)}>
+          {more ? 'Hide evidence and skills' : 'Show evidence, skills and reading'}
+        </button>
+
+        <div className={`${more ? 'block' : 'hidden'} space-y-8 lg:block`}>
           <div>
             <h4 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--fg-muted)]">Evidence for this track</h4>
             <div className="mt-4 space-y-3">

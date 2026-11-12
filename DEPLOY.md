@@ -39,7 +39,7 @@ cd ..
 
 Source photos, the working Word resume, internal review notes, and unapproved testimonial drafts are gitignored. They live locally and in the sibling folder `Documents\NK\AI Remote Portfolio - private`. Do not `git add` them.
 
-Optional but recommended before treating the site as interview-safe: skim `CONTENT_REVIEW.md` in that private folder (especially 12+ years vs the Jan 2017 start date, Immediate joiner, and the governance case-study numbers).
+Optional but recommended before treating the site as interview-safe: skim `CONTENT_REVIEW.md` in that private folder (especially the governance case-study numbers marked for confirmation).
 
 ---
 

@@ -5,26 +5,27 @@ import { experience, education } from '@/data/profile';
 import { skillGroups } from '@/data/skills';
 const top = (id: string, n = 8) => skillGroups.find((g) => g.id === id)!.items.filter((i) => i.depth !== 'working').slice(0, n).map((i) => i.name.split(':')[0].split(' (')[0]);
 ---
-<Base title="Resume | Naveen Kumar" description="Resume of Naveen Kumar, Principal AI Architect and forward-deployed AI engineering leader. Print-ready; Word download available." hideChat>
+<Base title="Resume | Naveen Kumar" description="Resume of Naveen Kumar, Principal AI Architect and forward-deployed AI engineering leader. PDF and Word downloads available." hideChat>
   <article class="mx-auto max-w-4xl px-5 py-10 sm:px-8 md:py-14">
     <div class="mb-6 flex flex-wrap gap-2 no-print">
-      <button class="btn btn-primary !py-2 !px-4 text-sm" onclick="window.print()">Print or save as PDF</button>
+      <a class="btn btn-primary !py-2 !px-4 text-sm" href={site.resumePdf} download>Download PDF</a>
       <a class="btn btn-secondary !py-2 !px-4 text-sm" href={site.resumeDocx} download>Download Word (.docx)</a>
+      <button class="btn btn-ghost !py-2 !px-4 text-sm" onclick="window.print()">Print this page</button>
       <a class="btn btn-ghost !py-2 !px-4 text-sm" href="/executive-brief">Executive brief</a>
     </div>
 
     <header class="border-b border-[var(--line)] pb-5">
       <h1 class="text-3xl font-extrabold tracking-tight">Naveen Kumar</h1>
-      <p class="mt-1 font-medium">Principal AI Architect · Forward-Deployed AI Engineering Leader · Agentic AI, Enterprise RAG, LLMOps, AI Governance</p>
+      <p class="mt-1 font-medium">AI Engineering Leader · Principal AI Architect · Head of AI · Agentic AI · AI Governance, Security and Evals</p>
       <p class="mt-2 text-sm text-[var(--fg-muted)]">
-        {site.location} · <a class="underline" href={`mailto:${site.email}`}>{site.email}</a> · {site.phoneUAE} · <a class="underline" href={site.linkedin}>LinkedIn</a> · <a class="underline" href={site.github}>GitHub</a> · <a class="underline" href={site.url}>{site.url.replace('https://', '')}</a>
+        {site.location} · <strong>{site.joinerStatus}</strong> · <a class="underline" href={`mailto:${site.email}`}>{site.email}</a> · {site.phoneUAE} · <a class="underline" href={site.linkedin}>LinkedIn</a> · <a class="underline" href={site.github}>GitHub</a> · <a class="underline" href={site.url}>{site.url.replace('https://', '')}</a>
       </p>
     </header>
 
     <section class="mt-6">
       <h2 class="text-sm font-bold uppercase tracking-wider text-accent-600 dark:text-accent-400">Summary</h2>
       <p class="mt-2 text-sm leading-relaxed">
-        AI engineering leader and principal architect with 12+ years in data, ML and AI, taking AI from proof of concept to governed production inside regulated enterprises, and 5+ years forward-deployed with customers in government, retail, BFSI, healthcare, sports media and technology. Architected and hands-on built a government-scale agentic AI platform (10K+ daily requests, 98% uptime, cost -30%) and production agentic RAG at a Fortune 500 retailer ($600K/yr savings, resolution time -40%). Built and lead a {numbers.teamSize}-person AI team; hired {numbers.hired}, onboarded {numbers.onboarded}; own {numbers.programs} programs with up to {numbers.concurrentPrograms} concurrent. Established AI governance, evaluation and platform standards. Open to Head of AI, Forward Deployed Engineering Lead, Principal AI Platform and sovereign AI leadership roles; remote, relocation or UAE onsite.
+        AI engineering leader and principal architect with 10+ years in data, ML and AI, taking AI from proof of concept to governed production inside regulated enterprises, and 5+ years forward-deployed with customers in government, retail, BFSI, healthcare, sports media and technology. Architected and hands-on built a government-scale agentic AI platform (10K+ daily requests, 98% uptime, cost -30%) and production agentic RAG at a Fortune 500 retailer ($2M/yr savings, resolution time -40%). Built and lead a {numbers.teamSize}-person AI team; hired {numbers.hired}, onboarded {numbers.onboarded}; own {numbers.programs} programs with up to {numbers.concurrentPrograms} concurrent. Established AI governance, evaluation and platform standards. Open to Head of AI, Forward Deployed Engineering Lead, Principal AI Platform and sovereign AI leadership roles; remote, relocation or UAE onsite.
       </p>
     </section>
 
@@ -33,7 +34,7 @@ const top = (id: string, n = 8) => skillGroups.find((g) => g.id === id)!.items.f
       <ul class="mt-2 grid gap-1 text-sm sm:grid-cols-2">
         {[
           '10K+ requests/day, 98% uptime, engagement +40% on a government agentic platform',
-          '$600K/yr savings and support resolution time -40% at Circle K',
+          '$2M/yr savings and support resolution time -40% at Circle K',
           'Answer accuracy +30-40%, hallucinations -30% via evaluation harness and fine-tuning',
           'Latency -40% through microservices, caching and routing',
           'AI infrastructure cost -30% via model routing and right-sizing',
@@ -51,6 +52,7 @@ const top = (id: string, n = 8) => skillGroups.find((g) => g.id === id)!.items.f
             <span class="text-sm text-[var(--fg-muted)]">{e.period}</span>
           </div>
           <div class="text-sm font-medium text-[var(--fg-muted)]">{e.org} · {e.location}</div>
+          {e.engagements && <div class="text-xs italic text-[var(--fg-muted)]">{e.engagements}</div>}
           <ul class="mt-2 space-y-1 text-sm">
             {e.highlights.map((h) => <li class="flex gap-2"><span class="text-accent-500">▪</span><span>{h}</span></li>)}
           </ul>

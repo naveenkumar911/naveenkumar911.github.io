@@ -3,7 +3,9 @@ import Base from '@/layouts/Base.astro';
 import Section from '@/components/Section.astro';
 import RoutingSimulator from '@/components/demos/RoutingSimulator';
 import EvalDashboard from '@/components/demos/EvalDashboard';
+import StillShipping from '@/components/StillShipping.tsx';
 import { site } from '@/config';
+import { shipping } from '@/data/shipping';
 ---
 <Base title="Live demos | Naveen Kumar" description="Interactive demos of the systems I build: a quality-gated model-routing cost simulator, an LLM evaluation release-gate dashboard, and a grounded AI assistant with job-description fit analysis. All running on free infrastructure.">
   <Section kicker="Live demos" title="Working systems, not slides." intro="Three small, real pieces of the platforms I build. Each runs in your browser or on a free-tier Worker. Change the inputs; the logic is the same logic that runs in production, with the numbers made illustrative.">
@@ -53,6 +55,10 @@ import { site } from '@/config';
         </div>
       </div>
     </div>
+  </Section>
+
+  <Section kicker="Still shipping" title="Recent work, with dates." intro="Leadership did not stop the commits. A curated log of what I personally shipped recently, and my public GitHub pulled live.">
+    <StillShipping client:visible items={shipping} githubUser={site.github.split('/').pop()!} githubUrl={site.github} />
   </Section>
 </Base>
 

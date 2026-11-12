@@ -8,11 +8,11 @@ export const site = {
   title: 'Naveen Kumar | Principal AI Architect and Forward-Deployed AI Leader',
   tagline: 'I take agentic AI from POC to governed production inside regulated enterprises.',
   description:
-    'Principal AI Architect and forward-deployed AI engineering leader with 12+ years building production agentic AI, enterprise RAG, LLM evaluation and AI platforms for government, retail, BFSI, healthcare and technology. Immediate joiner. Open to Head of AI, CAIO-track, Forward Deployed Engineering Lead, Principal AI Platform and sovereign AI leadership roles, remote or onsite.',
+    'Principal AI Architect and forward-deployed AI engineering leader with 10+ years building production agentic AI, enterprise RAG, LLM evaluation and AI platforms for government, retail, BFSI, healthcare and technology. Immediate joiner. Open to Head of AI, CAIO-track, Forward Deployed Engineering Lead, Principal AI Platform and sovereign AI leadership roles, remote or onsite.',
   // Set to your custom domain (e.g. 'https://naveenkumar.ai') once DNS is configured; see README "Custom domain".
   url: 'https://naveenkumar911.github.io',
-  location: 'Dubai / Abu Dhabi, UAE (GMT+4)',
-  experienceYears: '12+',
+  location: 'Abu Dhabi, UAE (GMT+4)',
+  experienceYears: '10+',
   availability: 'Immediate joiner. Open to remote (US / global), relocation, and UAE onsite',
   joinerStatus: 'Immediate joiner',
   executiveBriefPdf: '/NaveenKumar_Executive_Brief.pdf',
@@ -26,6 +26,7 @@ export const site = {
   calcom: 'https://cal.com/naveenkumar911',
   formspree: 'https://formspree.io/f/mwlkqojy',
   resumeDocx: '/NaveenKumar_Resume.docx',
+  resumePdf: '/NaveenKumar_Resume.pdf',
   chatEndpoint: import.meta.env.PUBLIC_CHAT_ENDPOINT || '',
   // Privacy-friendly analytics (free, no cookies). Set PUBLIC_GOATCOUNTER in site/.env or as a GitHub
   // Actions variable to e.g. 'https://naveenkumar.goatcounter.com/count'; see README "Analytics".
@@ -35,12 +36,11 @@ export const site = {
 };
 
 export const nav = [
-  { href: '/#hire-me-as', label: 'Roles' },
+  { href: '/#experience', label: 'Experience' },
   { href: '/case-studies', label: 'Case Studies' },
-  { href: '/architecture', label: 'Architecture' },
   { href: '/demos', label: 'Live Demos' },
   { href: '/insights', label: 'Insights' },
-  { href: '/leadership', label: 'Leadership' },
+  { href: '/resume', label: 'Resume' },
   { href: '/hire', label: 'Hire Naveen' },
 ];
 
@@ -49,5 +49,5 @@ export const numbers = {
   onboarded: 12,
   programs: 12,
   concurrentPrograms: 6,
-  teamSize: 10,
+  teamSize: 12,
 };

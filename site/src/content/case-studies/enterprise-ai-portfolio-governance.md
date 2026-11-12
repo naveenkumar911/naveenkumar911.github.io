@@ -1,6 +1,6 @@
 ---
 title: "Running AI as a governed portfolio in government: compliance, procurement, cross-department stakeholders, P&L"
-client: "CPC / ADEK (Abu Dhabi Department of Education and Knowledge) with Watermelon"
+client: "UAE government AI programs, Abu Dhabi (Watermelon, ADEK, Andersen Labs)"
 role: "AI Lead Architect and AI Engineering Leader; portfolio owner for 12 forward-deployed AI programs"
 period: "Apr 2025 - Present"
 industry: "Government, regulated public sector"

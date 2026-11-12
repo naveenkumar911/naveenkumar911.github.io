@@ -136,7 +136,7 @@ await og({
   file: 'default.png',
   kicker: 'PRINCIPAL AI ARCHITECT  |  FORWARD-DEPLOYED AI LEADER',
   title: 'Naveen Kumar',
-  subtitle: 'Agentic AI from POC to governed production. 10K+ daily requests, 98% uptime, $600K/yr savings, 10-person team.',
+  subtitle: 'Agentic AI from POC to governed production. 10K+ daily requests, 98% uptime, $2M/yr savings, 12-person team.',
 });
 await og({
   file: 'case-studies.png',

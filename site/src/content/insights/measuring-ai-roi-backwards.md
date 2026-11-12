@@ -46,7 +46,7 @@ The last question is the one most programs skip. Without a counterfactual, "AI R
 - Every workflow enters the use-case register with a baseline measured over a defined period, signed by the business owner.
 - Cost per request is metered per workflow and combined with platform and team cost into a fully loaded figure reviewed monthly.
 - Where possible, rollouts are staged by cohort so the untreated cohort provides the counterfactual for the first weeks.
-- Outcomes are reported in the business owner's metric, not in AI metrics. "Support resolution time down 40 percent" and "$600K a year" are the numbers that survived the CFO at Circle K, not "answer relevance up 25 percent", even though the latter caused the former.
+- Outcomes are reported in the business owner's metric, not in AI metrics. "Support resolution time down 40 percent" and "$2M a year" are the numbers that survived the CFO at Circle K, not "answer relevance up 25 percent", even though the latter caused the former.
 - Time saved is reported as a leading indicator only, until the business owner can say what the time became.
 
 ## Adoption, utilisation, ROI
