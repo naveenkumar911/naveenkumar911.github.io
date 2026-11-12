@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 [vars]
 ALLOWED_ORIGINS = "https://naveenkumar911.github.io,http://localhost:4321"
 # Comma-separated: first is primary, the rest are fallbacks tried on model errors (e.g. retirement, 4xx/5xx).
-NIM_MODEL = "nvidia/llama-3.1-nemotron-70b-instruct,mistralai/mistral-large-2-instruct,openai/gpt-oss-20b"
+NIM_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b,mistralai/mistral-large-4-1t-a52b,deepseek-ai/deepseek-v4.1-flash"
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
 MAX_OUTPUT_TOKENS = "1100"
 MAX_TURNS = "12"
